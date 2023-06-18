@@ -4,18 +4,23 @@ function NewMember(){
     return (
         <main>
             <form className="newMember-Form">
-                <div>
+                <div style={{width:'40%', flex:'1 1 40%'}}>
                     <label htmlFor="lastname">Lastname</label>
                     <input name="lastname" type="text"/>
                     <label className='defaultSpacing' htmlFor="birthdate">Birthdate</label>
                     <input name="birthdate" type="text"/>
                 </div>
-                <div>
+                <div style={{width:'50%'}}>
                     <label htmlFor="firstname">Firstname</label>
                     <input name="firstname" type="text"/>
                     <label className='defaultSpacing' htmlFor="gender">Gender</label>
                     <input name="gender" type="text"/>
-
+                </div>
+                <div style={{width:'100%'}}>
+                    <label className='defaultSpacing' htmlFor="address1">Address [1]</label>
+                    <input name="address1" type="text"/>
+                    <label className='defaultSpacing' htmlFor="address1">Address [2]</label>
+                    <input name="address1" type="text"/>
                 </div>
             </form>
         </main>
