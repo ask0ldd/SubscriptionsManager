@@ -1,42 +1,55 @@
 #root {
-  max-width: 1280px;
+  max-width: 1440px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 2rem 0;
+}
+
+a {
+  display: block;
+  font-family: "Jost", sans-serif;
+  font-size: 1rem;
   text-align: center;
+  width: 100%;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+form {
+  display: flex;
+  flex-direction: column;
+  width: 360px;
+  font-family: "Jost", sans-serif;
+  font-size: 1rem;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+form input[type="text"],
+form input[type="number"] {
+  border: 1px solid #c5c5c5;
+  background: #f6f6f6;
+  padding: 0.5em 0.6em 0.45em 0.6em;
+  color: #454545;
+  font-family: "Jost", sans-serif;
+  font-size: 1rem;
+  /*font-family: Arial, Helvetica, sans-serif;*/
+  margin-top: 0.325rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+form input[type="submit"] {
+  margin-top: 2rem;
+  /*height: 32px;*/
+  font-family: "Jost", sans-serif;
+  font-size: 1rem;
+  padding: 0.5em 0.6em 0.45em 0.6em;
+  background: linear-gradient(to bottom, #fff 0%, #dcdcdc 100%);
+  border: 1px solid #979797;
 }
 
-.card {
-  padding: 2em;
+label.defaultSpacing {
+  margin-top: 1rem;
 }
 
-.read-the-docs {
-  color: #888;
+form input:focus {
+  outline: 1px solid #213547;
+}
+
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.6);
 }
