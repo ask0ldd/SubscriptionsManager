@@ -10,7 +10,7 @@ function NewMember(){
                     <label className='defaultSpacing' htmlFor="birthdate">Birthdate</label>
                     <input name="birthdate" type="text"/>
                 </div>
-                <div style={{width:'50%'}}>
+                <div style={{width:'40%', flex:'1 1 40%'}}>
                     <label htmlFor="firstname">Firstname</label>
                     <input name="firstname" type="text"/>
                     <label className='defaultSpacing' htmlFor="gender">Gender</label>
@@ -22,6 +22,15 @@ function NewMember(){
                     <label className='defaultSpacing' htmlFor="address1">Address [2]</label>
                     <input name="address1" type="text"/>
                 </div>
+                <div style={{width:'40%', flex:'1 1 40%'}}>
+                    <label className='defaultSpacing' htmlFor="postalcode">Postal Code</label>
+                    <input name="postalcode" type="text"/>
+                </div>
+                <div style={{width:'40%', flex:'1 1 40%'}}>
+                    <label className='defaultSpacing' htmlFor="city">City</label>
+                    <input name="city" type="text"/>
+                </div>
+                
             </form>
         </main>
     )

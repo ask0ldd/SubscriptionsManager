@@ -4,6 +4,8 @@
   column-gap: 4rem;
   flex-wrap: wrap;
   width: 640px;
+  box-shadow: 0 8px 16px #bdbdbd;
+  padding: 2rem;
 }
 
 .newMember-Form div {
