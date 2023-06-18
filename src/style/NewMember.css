@@ -16,3 +16,8 @@
 label.defaultSpacing {
   margin-top: 1.5rem;
 }
+
+.newMember-Form input[type="submit"] {
+  align-self: center;
+  width: 100%;
+}

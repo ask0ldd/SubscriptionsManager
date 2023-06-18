@@ -53,6 +53,9 @@ function NewMember(){
                     <input id="emergencyContact-firstname" type="text"/>
                 </div>
                 
+                <div style={{width:'100%'}}>
+                <input id="newMemberSubmit" type="submit"/>
+                </div>
             </form>
         </main>
     )
