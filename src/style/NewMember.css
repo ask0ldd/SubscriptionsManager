@@ -1,0 +1,14 @@
+.newMember-Form {
+  display: flex;
+  flex-direction: row;
+  column-gap: 4rem;
+}
+
+.newMember-Form div {
+  display: flex;
+  flex-direction: column;
+}
+
+label.defaultSpacing {
+  margin-top: 1.5rem;
+}
