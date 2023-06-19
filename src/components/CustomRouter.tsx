@@ -8,7 +8,7 @@ function CustomRouter() {
         <Router>
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/newMember" element={<NewMember />} />
+                <Route path="/newmember" element={<NewMember />} />
             </Routes>
         </Router>
     )

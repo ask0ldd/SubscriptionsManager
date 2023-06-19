@@ -24,7 +24,7 @@ form input[type="text"],
 form input[type="number"] {
   border: 1px solid #c5c5c5;
   background: #f6f6f6;
-  padding: 0.5em 0.6em 0.45em 0.6em;
+  padding: 0.35em 0.4em 0.4em 0.4em;
   color: #454545;
   font-family: "Jost", sans-serif;
   font-size: 1rem;
@@ -37,7 +37,7 @@ form input[type="submit"] {
   /*height: 32px;*/
   font-family: "Jost", sans-serif;
   font-size: 1rem;
-  padding: 0.5em 0.6em 0.45em 0.6em;
+  padding: 0.4em 0.4em 0.35em 0.4em;
   background: linear-gradient(to bottom, #fff 0%, #dcdcdc 100%);
   border: 1px solid #979797;
 }
