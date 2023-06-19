@@ -6,36 +6,36 @@ function NewPaiement(){
             <form className="newPaiement-Form">
                 <div className='trioletContainer'>
                     <div className='triolet'>
-                        <label>Activity</label>
-                        <input type='text'/>
+                        <label htmlFor="subscribedActivity">Activity</label>
+                        <input id="subscribedActivity" type='text'/>
                     </div>
                     <div className='triolet'>
-                        <label>Starting Date</label>
-                        <input type='text'/>
+                        <label htmlFor="subscription-startingDate">Starting Date</label>
+                        <input id="subscription-startingDate" type='text'/>
                     </div>
                     <div className='triolet'>
-                        <label>Subscription Duration</label>
-                        <input type='text'/>
+                        <label htmlFor="subscriptionDuration">Subscription Duration</label>
+                        <input id="subscriptionDuration" type='text'/>
                     </div>
                 </div>
 
-                <div className='trioletContainer'>
+                <div className='trioletContainer defaultSpacing'>
                     <div className='triolet'>
-                        <label className='defaultSpacing'>Registration Fees</label>
-                        <input type='text'/>
+                        <label htmlFor="registrationFees">Registration Fees</label>
+                        <input id="registrationFees" type='text'/>
                     </div>
                     <div className='triolet'>
-                        <label className='defaultSpacing'>Payment Method</label>
-                        <input type='text'/>
+                        <label htmlFor="paymentMethod">Payment Method</label>
+                        <input id="paymentMethod" type='text'/>
                     </div>
                     <div className='triolet'>
-                        <label className='defaultSpacing'>Payment Date</label>
-                        <input type='text'/>
+                        <label htmlFor="paymentDate">Payment Date</label>
+                        <input id="paymentDate" type='text'/>
                     </div>
                 </div>
 
-                <label className='defaultSpacing'>Notes</label>
-                <textarea/>
+                <label htmlFor="subscriptionNotes" className='defaultSpacing'>Notes</label>
+                <textarea id="subscriptionNotes"/>
 
                 <input id="newPaymentSubmit" type="submit" value="Submit a New Payment"/>
 
