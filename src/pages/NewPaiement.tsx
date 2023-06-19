@@ -34,6 +34,11 @@ function NewPaiement(){
                     </div>
                 </div>
 
+                <label className='defaultSpacing'>Notes</label>
+                <textarea/>
+
+                <input id="newPaymentSubmit" type="submit" value="Submit a New Payment"/>
+
             </form>
         </main>
     )
