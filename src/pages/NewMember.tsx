@@ -54,7 +54,7 @@ function NewMember(){
                 </div>
                 
                 <div style={{width:'100%'}}>
-                <input id="newMemberSubmit" type="submit"/>
+                <input id="newMemberSubmit" type="submit" value="Register this new Member"/>
                 </div>
             </form>
         </main>
