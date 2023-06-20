@@ -3,12 +3,12 @@ import '../style/NewLeftover.css'
 function NewLeftover(){
     return (
         <main>
-            <form className="NewLeftover-Form">
-                <div style={{width:'40%', flex:'1 1 40%'}}>
+            <form className="newLeftover-Form">
+                <div style={{width:'40%', flex:'1 1 46%'}}>
                     <label htmlFor="leftover-amountOfWeeks">Amount of Weeks</label>
                     <input id="leftover-amountOfWeeks" type="text"/>
                 </div>
-                <div style={{width:'40%', flex:'1 1 40%'}}>
+                <div style={{width:'40%', flex:'1 1 46%'}}>
                     <label htmlFor="leftover-validatedBy">Validated by</label>
                     <input id="leftover-validatedBy" type="text"/>
                 </div>
