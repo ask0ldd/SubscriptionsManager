@@ -10,7 +10,7 @@ function NewPaiement(){
                         <input id="subscribedActivity" type='text'/>
                     </div>
                     <div className='triolet'>
-                        <label htmlFor="subscription-startingDate">Starting Date</label>
+                        <label htmlFor="subscription-startingDate">Subscription Starting On</label>
                         <input id="subscription-startingDate" type='text'/>
                     </div>
                     <div className='triolet'>
