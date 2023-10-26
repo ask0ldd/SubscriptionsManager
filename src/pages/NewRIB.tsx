@@ -5,32 +5,32 @@ function NewRIB(){
         <main className="main-rib">
             <form className="form-rib">
                 <div className='soloRow'>
-                        <label htmlFor="refundAmount" className='defaultSpacing'>IBAN</label>
-                        <input id="refundAmount" type="text"/>
+                        <label htmlFor="ribIBAN" className='defaultSpacing'>IBAN</label>
+                        <input id="ribIBAN" type="text"/>
                 </div>
                 <div className='duoRow'>
                     <div className='soloRow'>
-                        <label htmlFor="refundAmount" className='defaultSpacing'>Bank Identification Code</label>
-                        <input id="refundAmount" type="text"/>
+                        <label htmlFor="ribBIC" className='defaultSpacing'>Bank Identification Code</label>
+                        <input id="ribBIC" type="text"/>
                     </div>                
                     <div className='soloRow'>
-                        <label htmlFor="refundMethod" className='defaultSpacing'>Domiciliation</label>
-                        <input id="refundMethod" type="text"/>
+                        <label htmlFor="ribBank" className='defaultSpacing'>Domiciliation</label>
+                        <input id="ribBank" type="text"/>
                     </div>
                 </div>
 
                 <div className='duoRow'>
                     <div className='soloRow'>
-                        <label htmlFor="refundAmount" className='defaultSpacing'>Nom du Titulaire</label>
-                        <input id="refundAmount" type="text"/>
+                        <label htmlFor="ribOwner" className='defaultSpacing'>Nom du Titulaire</label>
+                        <input id="ribOwner" type="text"/>
                     </div>                
                     <div className='soloRow'>
-                        <label htmlFor="refundMethod" className='defaultSpacing'>Scan</label>
-                        <input id="refundMethod" type="text"/>
+                        <label htmlFor="ribScan" className='defaultSpacing'>Scan</label>
+                        <input id="ribScan" type="text"/>
                     </div>
                 </div>
 
-                <input id="refundSubmit" type="submit" value="Valider le Remboursement"/>
+                <input id="ribSubmit" type="submit" value="Ajouter ce RIB"/>
             </form>
         </main>
     )
