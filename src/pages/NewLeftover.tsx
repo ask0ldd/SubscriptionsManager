@@ -16,7 +16,7 @@ function NewLeftover(){
                 <label htmlFor="subscriptionNotes" className='defaultSpacing'>Notes</label>
                 <textarea id="subscriptionNotes"/>
 
-                <input id="newPaymentSubmit" type="submit" value="Submit a New Payment"/>
+                <input id="newPaymentSubmit" type="submit" value="Assign some"/>
 
             </form>
         </main>
