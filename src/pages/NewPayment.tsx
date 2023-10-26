@@ -1,6 +1,6 @@
-import '../style/NewPaiement.css'
+import '../style/NewPayment.css'
 
-function NewPaiement(){
+function NewPayment(){
     return (
         <main>
             <form className="newPaiement-Form">
@@ -44,4 +44,4 @@ function NewPaiement(){
     )
 }
 
-export default NewPaiement
+export default NewPayment

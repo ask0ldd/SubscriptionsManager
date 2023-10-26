@@ -4,10 +4,12 @@ function NewRIB(){
     return(
         <main className="main-rib">
             <form className="form-rib">
+
                 <div className='soloRow'>
-                        <label htmlFor="ribIBAN" className='defaultSpacing'>IBAN</label>
+                        <label htmlFor="ribIBAN">IBAN</label>
                         <input id="ribIBAN" type="text"/>
                 </div>
+                
                 <div className='duoRow'>
                     <div className='soloRow'>
                         <label htmlFor="ribBIC" className='defaultSpacing'>Bank Identification Code</label>

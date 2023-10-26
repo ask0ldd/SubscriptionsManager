@@ -1,10 +1,10 @@
-main.main-rib {
+main.main-subscription {
   display: flex;
   justify-content: center;
   max-width: calc(1440px * 60 / 100);
 }
 
-form.form-rib {
+form.form-subscription {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -12,12 +12,12 @@ form.form-rib {
   padding: 2rem 4rem;
 }
 
-form.form-rib .soloRow {
+form.form-subscription .soloRow {
   display: flex;
   flex-direction: column;
 }
 
-form.form-rib .duoRow {
+form.form-subscription .duoRow {
   display: flex;
   flex-direction: row;
   column-gap: 4rem;

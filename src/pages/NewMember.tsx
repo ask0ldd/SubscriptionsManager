@@ -49,7 +49,7 @@ function NewMember(){
                     <input id="emergencyContact-mobile" type="text"/>
                 </div>
                 <div style={{width:'40%', flex:'1 1 40%'}}>
-                    <label htmlFor="emergencyContact-firstname">Firstname</label>
+                    <label className='defaultSpacing' htmlFor="emergencyContact-firstname">Firstname</label>
                     <input id="emergencyContact-firstname" type="text"/>
                 </div>
                 
