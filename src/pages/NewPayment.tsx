@@ -1,7 +1,10 @@
+import Header from '../components/Header'
 import '../style/NewPayment.css'
 
 function NewPayment(){
     return (
+    <>
+        <Header/>
         <main>
             <form className="newPaiement-Form">
                 <div className='trioletContainer'>
@@ -41,6 +44,7 @@ function NewPayment(){
 
             </form>
         </main>
+    </>
     )
 }
 

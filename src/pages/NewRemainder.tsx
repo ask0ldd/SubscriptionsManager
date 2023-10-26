@@ -1,7 +1,10 @@
+import Header from '../components/Header'
 import '../style/NewRemainder.css'
 
 function NewRemainder(){
     return (
+    <>
+        <Header/>
         <main>
             <form className="newRemainder-Form">
                 <div style={{width:'40%', flex:'1 1 46%'}}>
@@ -20,6 +23,7 @@ function NewRemainder(){
 
             </form>
         </main>
+    </>
     )
 }
 

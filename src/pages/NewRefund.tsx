@@ -2,6 +2,8 @@ import '../style/NewRefund.css'
 
 function NewRefund(){
     return(
+    <>
+        <Header/>
         <main className="main-refund">
             <form className="form-refund">
                 <div className='duoRow'>
@@ -30,6 +32,7 @@ function NewRefund(){
                 <input id="refundSubmit" type="submit" value="Valider le Remboursement"/>
             </form>
         </main>
+    </>
     )
 }
 

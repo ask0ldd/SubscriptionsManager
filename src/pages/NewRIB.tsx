@@ -1,7 +1,10 @@
+import Header from '../components/Header'
 import '../style/NewRIB.css'
 
 function NewRIB(){
     return(
+    <>
+        <Header/>
         <main className="main-rib">
             <form className="form-rib">
 
@@ -9,7 +12,7 @@ function NewRIB(){
                         <label htmlFor="ribIBAN">IBAN</label>
                         <input id="ribIBAN" type="text"/>
                 </div>
-                
+
                 <div className='duoRow'>
                     <div className='soloRow'>
                         <label htmlFor="ribBIC" className='defaultSpacing'>Bank Identification Code</label>
@@ -35,6 +38,7 @@ function NewRIB(){
                 <input id="ribSubmit" type="submit" value="Ajouter ce RIB"/>
             </form>
         </main>
+    </>
     )
 }
 

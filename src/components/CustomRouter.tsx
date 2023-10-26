@@ -15,7 +15,7 @@ function CustomRouter() {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/newmember" element={<NewMember />} />
-                <Route path="/newpaiement" element={<NewPayment />} />
+                <Route path="/newpayment" element={<NewPayment />} />
                 <Route path="/newremainder" element={<NewRemainder />} />
                 <Route path="/newanomaly" element={<NewAnomaly/>} />
                 <Route path="/newrefund" element={<NewRefund/>} />

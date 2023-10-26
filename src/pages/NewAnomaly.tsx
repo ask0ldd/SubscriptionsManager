@@ -1,7 +1,10 @@
+import Header from '../components/Header'
 import '../style/NewAnomaly.css'
 
 function NewAnomaly(){
     return(
+    <>
+        <Header/>
         <main className="main-anomaly">
             <form className='form-anomalie'>
                 <div className='soloRow'>
@@ -24,6 +27,7 @@ function NewAnomaly(){
                 <input id="anomalySubmit" type="submit" value="Set Anomaly"/>
             </form>
         </main>
+    </>
     )
 }
 

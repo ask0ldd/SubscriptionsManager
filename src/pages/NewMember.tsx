@@ -1,7 +1,10 @@
+import Header from '../components/Header'
 import '../style/NewMember.css'
 
 function NewMember(){
     return (
+    <>
+        <Header/>
         <main className='main-newMember'>
             <form className="form-newMember">
                 <div style={{width:'40%', flex:'1 1 40%'}}>
@@ -58,6 +61,7 @@ function NewMember(){
                 </div>
             </form>
         </main>
+    </>
     )
 }
 
