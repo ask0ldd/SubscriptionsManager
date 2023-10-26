@@ -1,0 +1,22 @@
+main.main-rib {
+  display: flex;
+  justify-content: center;
+  max-width: calc(1440px * 60 / 100);
+}
+
+form.form-rib {
+  padding: 2rem 4rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.soloRow {
+  display: flex;
+  flex-direction: column;
+}
+
+.duoRow {
+  display: flex;
+  flex-direction: row;
+  column-gap: 4rem;
+}

@@ -1,31 +1,34 @@
-import '../style/NewRefund.css'
+import '../style/NewRIB.css'
 
-function NewRefund(){
+function NewRIB(){
     return(
-        <main className="main-refund">
-            <form className="form-refund">
-                <div className='duoRow'>
-                    <div className='soloRow'>
-                        <label htmlFor="refundAmount" className='defaultSpacing'>Montant du Remboursement</label>
+        <main className="main-rib">
+            <form className="form-rib">
+                <div className='soloRow'>
+                        <label htmlFor="refundAmount" className='defaultSpacing'>IBAN</label>
                         <input id="refundAmount" type="text"/>
-                    </div>                
-                    <div className='soloRow'>
-                        <label htmlFor="refundMethod" className='defaultSpacing'>Moyen de Paiement</label>
-                        <input id="refundMethod" type="text"/>
-                    </div>
                 </div>
                 <div className='duoRow'>
                     <div className='soloRow'>
-                        <label htmlFor="refundAmount" className='defaultSpacing'>Autorisé par</label>
+                        <label htmlFor="refundAmount" className='defaultSpacing'>Bank Identification Code</label>
                         <input id="refundAmount" type="text"/>
                     </div>                
                     <div className='soloRow'>
-                        <label htmlFor="refundMethod" className='defaultSpacing'>Ajout d'un Document (RIB / Chèque)</label>
+                        <label htmlFor="refundMethod" className='defaultSpacing'>Domiciliation</label>
                         <input id="refundMethod" type="text"/>
                     </div>
                 </div>
-                <label htmlFor="refundDetails" className='defaultSpacing'>Notes</label>
-                <textarea id="refundDetails"/>
+
+                <div className='duoRow'>
+                    <div className='soloRow'>
+                        <label htmlFor="refundAmount" className='defaultSpacing'>Nom du Titulaire</label>
+                        <input id="refundAmount" type="text"/>
+                    </div>                
+                    <div className='soloRow'>
+                        <label htmlFor="refundMethod" className='defaultSpacing'>Scan</label>
+                        <input id="refundMethod" type="text"/>
+                    </div>
+                </div>
 
                 <input id="refundSubmit" type="submit" value="Valider le Remboursement"/>
             </form>
@@ -33,4 +36,4 @@ function NewRefund(){
     )
 }
 
-export default NewRefund
+export default NewRIB
