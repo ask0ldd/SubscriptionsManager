@@ -4,7 +4,7 @@
   column-gap: 4rem;
   flex-wrap: wrap;
   width: 920px;
-  box-shadow: 0 8px 16px #bdbdbd;
+  box-shadow: 0 8px 16px #4688d333, 0 16px 32px #4688d311;
   padding: 2rem;
 }
 
@@ -29,10 +29,10 @@ label.defaultSpacing,
   width: 100%;
   height: 20rem;
   resize: none;
-  border: 1px solid #c5c5c5;
-  background: #f6f6f6;
+  border: 1px solid #4688d344;
+  background: #ffffff;
   padding: 0.35em 0.4em 0.4em 0.4em;
-  color: #454545;
+  color: #264f81bb;
   font-family: "Jost", sans-serif;
   font-size: 1rem;
   margin-top: 0.325rem;
@@ -41,4 +41,5 @@ label.defaultSpacing,
 .newPaiement-Form input[type="submit"] {
   align-self: center;
   justify-self: center;
+  width: 100%;
 }
