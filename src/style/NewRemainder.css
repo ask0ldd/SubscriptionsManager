@@ -6,17 +6,23 @@ main.main-newRemainder {
 
 form.form-newRemainder {
   display: flex;
-  flex-direction: row;
-  column-gap: 4rem;
-  flex-wrap: wrap;
-  width: 920px;
-  box-shadow: 0 8px 16px #bdbdbd;
-  padding: 2rem;
+  flex-direction: column;
+  width: 100%;
+  box-shadow: 0 8px 16px #4688d333, 0 16px 32px #4688d311;
+  padding: 2rem 4rem;
 }
 
-.form-newRemainder div {
+form.form-newRemainder .soloRow {
   display: flex;
   flex-direction: column;
+  flex: 1 1 100%;
+}
+
+form.form-newRemainder .duoRow {
+  display: flex;
+  flex-direction: row;
+  column-gap: 4rem;
+  width: 100%;
 }
 
 label.defaultSpacing {
@@ -36,4 +42,5 @@ label.defaultSpacing {
 .form-newRemainder input[type="submit"] {
   align-self: center;
   justify-self: center;
+  width: 100%;
 }

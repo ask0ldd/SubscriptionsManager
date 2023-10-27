@@ -7,13 +7,15 @@ function NewRemainder(){
         <Header/>
         <main className="main-newRemainder">
             <form className="form-newRemainder">
-                <div style={{width:'40%', flex:'1 1 46%'}}>
-                    <label htmlFor="remainder-amountOfWeeks">Amount of Weeks</label>
-                    <input id="remainder-amountOfWeeks" type="text"/>
-                </div>
-                <div style={{width:'40%', flex:'1 1 46%'}}>
-                    <label htmlFor="remainder-validatedBy">Validated by</label>
-                    <input id="remainder-validatedBy" type="text"/>
+                <div className='duoRow'>
+                    <div className='soloRow'>
+                        <label htmlFor="remainder-amountOfWeeks">Amount of Weeks</label>
+                        <input id="remainder-amountOfWeeks" type="text"/>
+                    </div>
+                    <div className='soloRow'>
+                        <label htmlFor="remainder-validatedBy">Validated by</label>
+                        <input id="remainder-validatedBy" type="text"/>
+                    </div>
                 </div>
 
                 <label htmlFor="subscriptionNotes" className='defaultSpacing'>Notes</label>
