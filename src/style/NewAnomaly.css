@@ -41,3 +41,8 @@ textarea {
   font-size: 1rem;
   margin-top: 0.325rem;
 }
+
+.form-anomaly input[type="submit"] {
+  align-self: center;
+  width: 100%;
+}

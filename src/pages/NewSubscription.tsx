@@ -7,6 +7,7 @@ function NewSubscription(){
         <Header/>
         <main className="main-subscription">
             <form className="form-subscription">
+                
                 <div className='duoRow'>
                     <div className='soloRow'>
                         <label htmlFor="ribBIC" className='defaultSpacing'>Montant</label>

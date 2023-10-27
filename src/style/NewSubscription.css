@@ -15,10 +15,12 @@ form.form-subscription {
 form.form-subscription .soloRow {
   display: flex;
   flex-direction: column;
+  flex: 1 1 100%;
 }
 
 form.form-subscription .duoRow {
   display: flex;
   flex-direction: row;
   column-gap: 4rem;
+  width: 100%;
 }
