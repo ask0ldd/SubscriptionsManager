@@ -1,6 +1,6 @@
 main.main-anomaly {
   display: flex;
-  justify-content: center;
+  margin: 0 auto;
   max-width: calc(1440px * 60 / 100);
 }
 
@@ -8,11 +8,13 @@ form.form-anomalie {
   padding: 2rem 4rem;
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .soloRow {
   display: flex;
   flex-direction: column;
+  flex: 1 1 100%;
 }
 
 .duoRow {

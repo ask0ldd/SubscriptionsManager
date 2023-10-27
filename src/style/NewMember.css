@@ -1,6 +1,6 @@
 .main-newMember {
   display: flex;
-  justify-content: center;
+  margin: 0 auto;
   max-width: calc(1440px * 60 / 100);
 }
 

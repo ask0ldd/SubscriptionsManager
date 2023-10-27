@@ -18,6 +18,15 @@ function Header(){
                     <li>
                         <NavLink to="/newanomaly">New Anomaly</NavLink>
                     </li>
+                    <li>
+                        <NavLink to="/newrefund">New Refund</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/newremainder">New Remainder</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/newrib">New RIB</NavLink>
+                    </li>
                 </ul>
             </nav>
         </header>

@@ -1,9 +1,15 @@
-.newPaiement-Form {
+main.main-newPayment {
+  display: flex;
+  margin: 0 auto;
+  max-width: calc(1440px * 60 / 100);
+}
+
+form.form-newPayment {
   display: flex;
   flex-direction: row;
   column-gap: 4rem;
   flex-wrap: wrap;
-  width: 920px;
+  width: 100%;
   box-shadow: 0 8px 16px #4688d333, 0 16px 32px #4688d311;
   padding: 2rem;
 }

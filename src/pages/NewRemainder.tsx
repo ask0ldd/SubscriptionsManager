@@ -5,8 +5,8 @@ function NewRemainder(){
     return (
     <>
         <Header/>
-        <main>
-            <form className="newRemainder-Form">
+        <main className="main-newRemainder">
+            <form className="form-newRemainder">
                 <div style={{width:'40%', flex:'1 1 46%'}}>
                     <label htmlFor="remainder-amountOfWeeks">Amount of Weeks</label>
                     <input id="remainder-amountOfWeeks" type="text"/>

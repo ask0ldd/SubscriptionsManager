@@ -5,8 +5,8 @@ function NewPayment(){
     return (
     <>
         <Header/>
-        <main>
-            <form className="newPaiement-Form">
+        <main className='main-newPayment'>
+            <form className="form-newPayment">
                 <div className='trioletContainer'>
                     <div className='triolet'>
                         <label htmlFor="subscribedActivity">Activity</label>
