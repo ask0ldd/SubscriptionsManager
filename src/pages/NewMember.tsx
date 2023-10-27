@@ -1,21 +1,37 @@
+import { useState } from 'react'
 import Header from '../components/Header'
 import '../style/NewMember.css'
 
 function NewMember(){
+
+    const [inputsValues, newInputsValues] = useState<IState>({})
+
+    function handleChange(event: React.FormEvent<HTMLInputElement>){
+        const name = event.currentTarget.name
+        const value = event.currentTarget.value
+        // newInputsValues(values => ({...values, [name]: value}))
+        newInputsValues({...inputsValues, [name] : value})
+    }
+
+    function handleSubmit(event: React.FormEvent<HTMLFormElement>){
+        event.preventDefault()
+        console.log('state : ', inputsValues)
+    }
+
     return (
     <>
         <Header/>
         <main className='main-newMember'>
-            <form className="form-newMember">
+            <form className="form-newMember" onSubmit={handleSubmit}>
 
                 <div className='duoRow'>
                     <div className='soloRow'>
                         <label htmlFor="lastname">Lastname</label>
-                        <input id="lastname" type="text"/>
+                        <input name="lastname" value={inputsValues?.lastname || ''} onChange={handleChange} id="lastname" type="text"/>
                     </div>
                     <div className='soloRow'>
                         <label htmlFor="firstname">Firstname</label>
-                        <input id="firstname" type="text"/>
+                        <input name="firstname" value={inputsValues?.firstname || ''} onChange={handleChange} id="firstname" type="text"/>
                     </div>
                 </div>
 
@@ -34,7 +50,7 @@ function NewMember(){
                     <label className='defaultSpacing' htmlFor="address1">Address [1]</label>
                     <input id="address1" type="text"/>
                 </div>
-                
+
                 <div className='soloRow'>
                     <label className='defaultSpacing' htmlFor="address1">Address [2]</label>
                     <input id="address1" type="text"/>
@@ -101,3 +117,14 @@ function NewMember(){
 }
 
 export default NewMember
+
+interface IState {
+    lastname?: string
+    firstname?: string
+    birthdate?: string
+    gender?: 'M' | 'F' | 'NC'
+    address1?: string
+    address2?: string
+    postalcode?: string
+    city?: string
+}
