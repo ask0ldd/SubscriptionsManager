@@ -9,21 +9,21 @@ function NewRefund(){
             <form className="form-refund">
                 <div className='duoRow'>
                     <div className='soloRow'>
-                        <label htmlFor="refundAmount" className='defaultSpacing'>Montant du Remboursement</label>
+                        <label htmlFor="refundAmount">Montant du Remboursement</label>
                         <input id="refundAmount" type="text"/>
                     </div>                
                     <div className='soloRow'>
-                        <label htmlFor="refundMethod" className='defaultSpacing'>Moyen de Paiement</label>
+                        <label htmlFor="refundMethod">Moyen de Paiement</label>
                         <input id="refundMethod" type="text"/>
                     </div>
                 </div>
-                <div className='duoRow'>
+                <div className='duoRow defaultSpacing'>
                     <div className='soloRow'>
-                        <label htmlFor="refundAmount" className='defaultSpacing'>Autorisé par</label>
+                        <label htmlFor="refundAmount">Autorisé par</label>
                         <input id="refundAmount" type="text"/>
                     </div>                
                     <div className='soloRow'>
-                        <label htmlFor="refundMethod" className='defaultSpacing'>Ajout d'un Document (RIB / Chèque)</label>
+                        <label htmlFor="refundMethod">Ajout d'un Document (RIB / Chèque)</label>
                         <input id="refundMethod" type="text"/>
                     </div>
                 </div>

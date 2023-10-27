@@ -17,24 +17,24 @@ function NewRIB(){
                     </div>
                 </div>
 
-                <div className='duoRow'>
+                <div className='duoRow defaultSpacing'>
                     <div className='soloRow'>
-                        <label htmlFor="ribBIC" className='defaultSpacing'>Bank Identification Code</label>
+                        <label htmlFor="ribBIC">Bank Identification Code</label>
                         <input id="ribBIC" type="text"/>
                     </div>                
                     <div className='soloRow'>
-                        <label htmlFor="ribBank" className='defaultSpacing'>Domiciliation</label>
+                        <label htmlFor="ribBank">Domiciliation</label>
                         <input id="ribBank" type="text"/>
                     </div>
                 </div>
 
-                <div className='duoRow'>
+                <div className='duoRow defaultSpacing'>
                     <div className='soloRow'>
-                        <label htmlFor="ribOwner" className='defaultSpacing'>Nom du Titulaire</label>
+                        <label htmlFor="ribOwner">Nom du Titulaire</label>
                         <input id="ribOwner" type="text"/>
                     </div>                
                     <div className='soloRow'>
-                        <label htmlFor="ribScan" className='defaultSpacing'>Scan</label>
+                        <label htmlFor="ribScan">Scan Upload</label>
                         <input id="ribScan" type="text"/>
                     </div>
                 </div>

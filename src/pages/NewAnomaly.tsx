@@ -13,13 +13,13 @@ function NewAnomaly(){
                     <input id="anomalyTitle" type="text"/>
                 </div>
 
-                <div className='duoRow'>
+                <div className='duoRow defaultSpacing'>
                     <div className='soloRow'>
-                        <label htmlFor="anomalyActiveDate" className='defaultSpacing'>Active From</label>
+                        <label htmlFor="anomalyActiveDate">Active From</label>
                         <input id="anomalyActiveDate" type="text" placeholder="xx/xx/xxxx"/>
                     </div>                
                     <div className='soloRow'>
-                        <label htmlFor="anomalyEndOfActivity" className='defaultSpacing'>To</label>
+                        <label htmlFor="anomalyEndOfActivity">To</label>
                         <input id="anomalyEndOfActivity" type="text" placeholder="xx/xx/xxxx"/>
                     </div>
                 </div>

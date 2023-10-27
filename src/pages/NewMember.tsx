@@ -35,72 +35,72 @@ function NewMember(){
                     </div>
                 </div>
 
-                <div className='duoRow'>
+                <div className='duoRow defaultSpacing'>
                     <div className='soloRow'>
-                        <label className='defaultSpacing' htmlFor="birthdate">Birthdate</label>
+                        <label htmlFor="birthdate">Birthdate</label>
                         <input name="birthdate" value={inputsValues?.birthdate || ''} onChange={handleChange} id="birthdate" type="text"/>
                     </div>
                     <div className='soloRow'>
-                        <label className='defaultSpacing' htmlFor="gender">Gender</label>
+                        <label htmlFor="gender">Gender</label>
                         <input name="gender" value={inputsValues?.gender || ''} onChange={handleChange} id="gender" type="text"/>
                     </div>
                 </div>
 
-                <div className='soloRow'>
-                    <label className='defaultSpacing' htmlFor="address1">Address [1]</label>
+                <div className='soloRow defaultSpacing'>
+                    <label htmlFor="address1">Address [1]</label>
                     <input name="address1" value={inputsValues?.address1 || ''} onChange={handleChange} id="address1" type="text"/>
                 </div>
 
-                <div className='soloRow'>
-                    <label className='defaultSpacing' htmlFor="address2">Address [2]</label>
+                <div className='soloRow defaultSpacing'>
+                    <label htmlFor="address2">Address [2]</label>
                     <input name="address2" value={inputsValues?.address2 || ''} onChange={handleChange} id="address2" type="text"/>
                 </div>
 
-                <div className='duoRow'>
+                <div className='duoRow defaultSpacing'>
                     <div className='soloRow'>
-                        <label className='defaultSpacing' htmlFor="postalcode">Postal Code</label>
+                        <label htmlFor="postalcode">Postal Code</label>
                         <input name="postalcode" value={inputsValues?.postalcode || ''} onChange={handleChange} id="postalcode" type="text"/>
                     </div>
                     <div className='soloRow'>
-                        <label className='defaultSpacing' htmlFor="city">City</label>
+                        <label htmlFor="city">City</label>
                         <input name="city" value={inputsValues?.city || ''} onChange={handleChange} id="city" type="text"/>
                     </div>
                 </div>
 
-                <div className='duoRow'>
+                <div className='duoRow defaultSpacing'>
                     <div className='soloRow'>
-                        <label className='defaultSpacing' htmlFor="phone">Phone</label>
+                        <label htmlFor="phone">Phone</label>
                         <input name="phone" value={inputsValues?.phone || ''} onChange={handleChange} id="phone" type="text"/>
                     </div>
                     <div className='soloRow'>
-                        <label className='defaultSpacing' htmlFor="email">Email</label>
+                        <label htmlFor="email">Email</label>
                         <input name="email" value={inputsValues?.email || ''} onChange={handleChange} id="email" type="text"/>
                     </div>
                 </div>
 
-                <div className='duoRow'>
+                <div className='duoRow defaultSpacing'>
                     <div className='soloRow'>
-                        <label className='defaultSpacing' htmlFor="mobile">Mobile</label>
+                        <label htmlFor="mobile">Mobile</label>
                         <input name="mobile" value={inputsValues?.mobile || ''} onChange={handleChange} id="mobile" type="text"/>
                     </div>
                     <div className='soloRow'>
                     </div>
                 </div>
 
-                <div className='duoRow'>
+                <div className='duoRow defaultSpacing'>
                     <div className='soloRow'>
-                        <label className='defaultSpacing' htmlFor="emergencyContact-lastname">Lastname</label>
+                        <label htmlFor="emergencyContact-lastname">Lastname</label>
                         <input name="emergencyContactLastname" value={inputsValues?.emergencyContactLastname || ''} onChange={handleChange} id="emergencyContact-lastname" type="text"/>
                     </div>
                     <div className='soloRow'>
-                        <label className='defaultSpacing' htmlFor="emergencyContact-firstname">Firstname</label>
+                        <label htmlFor="emergencyContact-firstname">Firstname</label>
                         <input name="emergencyContactFirstname" value={inputsValues?.emergencyContactFirstname || ''} onChange={handleChange} id="emergencyContact-firstname" type="text"/>
                     </div>
                 </div>
 
-                <div className='duoRow'>
+                <div className='duoRow defaultSpacing'>
                     <div className='soloRow'>
-                        <label className='defaultSpacing' htmlFor="emergencyContact-mobile">Mobile</label>
+                        <label htmlFor="emergencyContact-mobile">Mobile</label>
                         <input name="emergencyContactMobile" value={inputsValues?.emergencyContactMobile || ''} onChange={handleChange} id="emergencyContact-mobile" type="text"/>
                     </div>
                     <div className='soloRow'>
