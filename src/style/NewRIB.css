@@ -12,13 +12,19 @@ form.form-rib {
   padding: 2rem 4rem;
 }
 
-form.form-rib .soloRow {
+.form-rib .soloRow {
   display: flex;
   flex-direction: column;
+  flex: 1 1 100%;
 }
 
-form.form-rib .duoRow {
+.form-rib .duoRow {
   display: flex;
   flex-direction: row;
   column-gap: 4rem;
+  width: 100%;
+}
+
+label.defaultSpacing {
+  margin-top: 1.5rem;
 }

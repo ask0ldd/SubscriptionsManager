@@ -18,3 +18,8 @@ header nav ul li {
   letter-spacing: 0.025rem;
   cursor: pointer;
 }
+
+header nav ul li a {
+  display: flex;
+  column-gap: 0.75rem;
+}

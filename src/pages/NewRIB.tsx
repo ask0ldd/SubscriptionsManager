@@ -8,9 +8,13 @@ function NewRIB(){
         <main className="main-rib">
             <form className="form-rib">
 
-                <div className='soloRow'>
-                        <label htmlFor="ribIBAN">IBAN</label>
-                        <input id="ribIBAN" type="text"/>
+                <div className='duoRow'>
+                    <div className='soloRow'>
+                            <label htmlFor="ribIBAN">IBAN</label>
+                            <input id="ribIBAN" type="text"/>
+                    </div>
+                    <div className='soloRow'>
+                    </div>
                 </div>
 
                 <div className='duoRow'>
