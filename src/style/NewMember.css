@@ -15,10 +15,10 @@
   padding: 2rem 4rem;
 }
 
-.form-newMember div {
+/*.form-newMember div {
   display: flex;
   flex-direction: column;
-}
+}*/
 
 label.defaultSpacing {
   margin-top: 1.5rem;
@@ -26,5 +26,18 @@ label.defaultSpacing {
 
 .form-newMember input[type="submit"] {
   align-self: center;
+  width: 100%;
+}
+
+.form-newMember .soloRow {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 100%;
+}
+
+.form-newMember .duoRow {
+  display: flex;
+  flex-direction: row;
+  column-gap: 4rem;
   width: 100%;
 }
