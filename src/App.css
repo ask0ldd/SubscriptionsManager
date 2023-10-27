@@ -11,6 +11,7 @@ a {
   font-size: 1rem;
   text-align: center;
   width: 100%;
+  color: #ffffffff;
 }
 
 form {
@@ -45,9 +46,23 @@ form input[type="submit"] {
   /*background: linear-gradient(to bottom, #fff 0%, #dcdcdc 100%);*/
   background: linear-gradient(to bottom, #4a98f1 0%, #4688d3cc 100%);
   /*border: 1px solid #979797;*/
-  border: 1px solid #4a98f1;
+  border: 1px solid #57a5ff;
   box-shadow: 0 8px 16px #4688d366, 0 16px 32px #4688d333;
   color: #ffffff;
+  cursor: pointer;
+  /*font-weight: 600;*/
+  letter-spacing: 0.025rem;
+}
+
+form input[type="submit"]:hover {
+  background: #62abff;
+  /*color: #4a98f1;*/
+  /*font-weight: 600;*/
+  /*border: 1px solid #ffffffff;*/
+}
+
+label {
+  letter-spacing: 0.025rem;
 }
 
 label.defaultSpacing {
