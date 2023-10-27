@@ -6,11 +6,13 @@ function NewAnomaly(){
     <>
         <Header/>
         <main className="main-anomaly">
-            <form className='form-anomalie'>
+            <form className='form-anomaly'>
+
                 <div className='soloRow'>
                     <label htmlFor='anomalyTitle'>Title</label>
                     <input id="anomalyTitle" type="text"/>
                 </div>
+
                 <div className='duoRow'>
                     <div className='soloRow'>
                         <label htmlFor="anomalyActiveDate" className='defaultSpacing'>Active From</label>
@@ -21,6 +23,7 @@ function NewAnomaly(){
                         <input id="anomalyEndOfActivity" type="text" placeholder="xx/xx/xxxx"/>
                     </div>
                 </div>
+
                 <label htmlFor="anomalyDetails" className='defaultSpacing'>Notes</label>
                 <textarea id="anomalyDetails"/>
 

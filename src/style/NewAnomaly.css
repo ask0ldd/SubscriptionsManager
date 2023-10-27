@@ -4,23 +4,28 @@ main.main-anomaly {
   max-width: calc(1440px * 60 / 100);
 }
 
-form.form-anomalie {
-  padding: 2rem 4rem;
+form.form-anomaly {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  column-gap: 4rem;
+  flex-wrap: wrap;
   width: 100%;
+  /*box-shadow: 0 8px 16px #bdbdbd;*/
+  box-shadow: 0 8px 16px #4688d333, 0 16px 32px #4688d311;
+  padding: 2rem 4rem;
 }
 
-.soloRow {
+.form-anomaly .soloRow {
   display: flex;
   flex-direction: column;
   flex: 1 1 100%;
 }
 
-.duoRow {
+.form-anomaly .duoRow {
   display: flex;
   flex-direction: row;
   column-gap: 4rem;
+  width: 100%;
 }
 
 label.defaultSpacing {
