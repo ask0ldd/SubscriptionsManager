@@ -7,25 +7,25 @@ function NewSubscription(){
         <Header/>
         <main className="main-subscription">
             <form className="form-subscription">
-                
+
                 <div className='duoRow'>
                     <div className='soloRow'>
-                        <label htmlFor="ribBIC" className='defaultSpacing'>Montant</label>
+                        <label htmlFor="ribBIC">Montant</label>
                         <input id="ribBIC" type="text"/>
                     </div>                
                     <div className='soloRow'>
-                        <label htmlFor="ribBank" className='defaultSpacing'>Parrain</label>
+                        <label htmlFor="ribBank">Parrain</label>
                         <input id="ribBank" type="text"/>
                     </div>
                 </div>
 
-                <div className='duoRow'>
+                <div className='duoRow defaultSpacing'>
                     <div className='soloRow'>
-                        <label htmlFor="ribOwner" className='defaultSpacing'>Date de Départ</label>
+                        <label htmlFor="ribOwner">Date de Départ</label>
                         <input id="ribOwner" type="text"/>
                     </div>                
                     <div className='soloRow'>
-                        <label htmlFor="ribScan" className='defaultSpacing'>Date de Fin</label>
+                        <label htmlFor="ribScan">Date de Fin</label>
                         <input id="ribScan" type="text"/>
                     </div>
                 </div>
