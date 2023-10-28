@@ -41,3 +41,12 @@
   column-gap: 4rem;
   width: 100%;
 }
+
+.labelErrorContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.labelErrorContainer span {
+  color: #a82663;
+}
