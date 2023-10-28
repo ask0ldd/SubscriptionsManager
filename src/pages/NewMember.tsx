@@ -11,8 +11,8 @@ function NewMember(){
 
     function handleChange(event: React.FormEvent<HTMLInputElement>){
         const {name, value} = event.currentTarget
-        setinputsStates(previousState => ({...previousState, [name] : {...previousState[name], value : value }}))
-        handleValidation(inputsStates)
+        setinputsStates(previousState => ({...previousState, [name] : {...previousState[name], 'value' : value }}))
+        // handleValidation(inputsStates)
     }
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>){
@@ -31,19 +31,19 @@ function NewMember(){
         setinputsStates(updatedInputStatesCopy)
     }
 
-    function handleValidation(inputValues : IState) : boolean{
+    function handleValidation(inputValues : IInputs) : boolean{
         resetInputsErrors()
-        if(!inputValues.lastname || !Validators.isName(inputValues.lastname)) setInputError('lastname', true)
-        if(!inputValues.firstname || !Validators.isName(inputValues.firstname)) setInputError('firstname', true)
-        if(!inputValues.birthdate || !Validators.isDate(inputValues.birthdate)) setInputError('gender', true)
-        if(!inputValues.postalcode || !Validators.isNumber(inputValues.postalcode)) setInputError('postalcode', true)
-        if(!inputValues.city || !Validators.isName(inputValues.city)) setInputError('city', true)
-        if(!inputValues.phone || !Validators.isNumber(inputValues.phone)) setInputError('phone', true)
-        if(!inputValues.email || !Validators.isEmail(inputValues.email)) setInputError('email', true)
-        if(!inputValues.mobile || !Validators.isNumber(inputValues.mobile)) setInputError('mobile', true)
-        if(!inputValues.emergencyContactLastname || !Validators.isName(inputValues.emergencyContactLastname)) setInputError('emergencyContactLastname', true)
-        if(!inputValues.emergencyContactFirstname || !Validators.isName(inputValues.emergencyContactFirstname)) setInputError('emergencyContactFirstname', true)
-        if(!inputValues.emergencyContactMobile || !Validators.isNumber(inputValues.emergencyContactMobile)) setInputError('emergencyContactMobile', true)
+        if(!inputValues.lastname.value || !Validators.isName(inputValues.lastname.value)) setInputError('lastname', true)
+        if(!inputValues.firstname.value || !Validators.isName(inputValues.firstname.value)) setInputError('firstname', true)
+        if(!inputValues.birthdate.value || !Validators.isDate(inputValues.birthdate.value)) setInputError('gender', true)
+        if(!inputValues.postalcode.value || !Validators.isNumber(inputValues.postalcode.value)) setInputError('postalcode', true)
+        if(!inputValues.city.value || !Validators.isName(inputValues.city.value)) setInputError('city', true)
+        if(!inputValues.phone.value || !Validators.isNumber(inputValues.phone.value)) setInputError('phone', true)
+        if(!inputValues.email.value || !Validators.isEmail(inputValues.email.value)) setInputError('email', true)
+        if(!inputValues.mobile.value || !Validators.isNumber(inputValues.mobile.value)) setInputError('mobile', true)
+        if(!inputValues.emergencyContactLastname.value || !Validators.isName(inputValues.emergencyContactLastname.value)) setInputError('emergencyContactLastname', true)
+        if(!inputValues.emergencyContactFirstname.value || !Validators.isName(inputValues.emergencyContactFirstname.value)) setInputError('emergencyContactFirstname', true)
+        if(!inputValues.emergencyContactMobile.value || !Validators.isNumber(inputValues.emergencyContactMobile.value)) setInputError('emergencyContactMobile', true)
         const errors : boolean[] = []
         Object.keys(inputsStates).forEach((key) => errors.push(inputsStates[key].error))
         if (errors.includes(false)) return false
