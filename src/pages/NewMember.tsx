@@ -15,6 +15,7 @@ function NewMember(){
         const {name, value} = event.currentTarget
         setinputsStates(previousState => ({...previousState, [name] : {...previousState[name], 'value' : value, untouched : false }}))
         // handleValidation(inputsStates)
+        realtimeInputValidation(name, value)
     }
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>){
@@ -49,6 +50,16 @@ function NewMember(){
         const errors : boolean[] = []
         Object.keys(inputsStates).forEach((key) => errors.push(inputsStates[key].error))
         if (errors.includes(false)) return false
+        return true
+    }
+
+    function realtimeInputValidation(name : string, value : any){
+        const validationResult = inputsStates[name].validators.reduce((accumulator, validator) => accumulator + Number(validator(value)), 0)
+        if(validationResult < inputsStates[name].validators.length) {
+            inputsStates[name].error = true
+            return false
+        }
+        inputsStates[name].error = false
         return true
     }
 
