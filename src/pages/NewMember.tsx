@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Header from '../components/Header'
 import '../style/NewMember.css'
+import { Validators } from '../services/validator'
 
 function NewMember(){
 
@@ -9,13 +10,29 @@ function NewMember(){
     function handleChange(event: React.FormEvent<HTMLInputElement>){
         const name = event.currentTarget.name
         const value = event.currentTarget.value
-        // setInputsValues(values => ({...values, [name]: value}))
-        setInputsValues({...inputsValues, [name] : value})
+        setInputsValues(previousState => ({...previousState, [name] : value}))
     }
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>){
         event.preventDefault()
-        console.log('state : ', inputsValues)
+        console.log(inputsValues)
+        if(!handleValidation(inputsValues)) console.error('invalid form')
+    }
+
+    function handleValidation(inputValues : IState) : boolean{
+
+        if(!inputValues.lastname || !Validators.isName(inputValues.lastname)) return false
+        if(!inputValues.firstname || !Validators.isName(inputValues.firstname)) return false
+        if(!inputValues.birthdate || !Validators.isDate(inputValues.birthdate)) return false
+        if(!inputValues.gender || !['M', 'F', 'NC'].includes(inputValues.gender)) return false
+        if(!inputValues.postalcode || !Validators.isNumber(inputValues.postalcode)) return false
+        if(!inputValues.phone || !Validators.isNumber(inputValues.phone)) return false
+        if(!inputValues.email || !Validators.isEmail(inputValues.email)) return false
+        if(!inputValues.mobile || !Validators.isNumber(inputValues.mobile)) return false
+        if(!inputValues.emergencyContactLastname || !Validators.isName(inputValues.emergencyContactLastname)) return false
+        if(!inputValues.emergencyContactFirstname || !Validators.isName(inputValues.emergencyContactFirstname)) return false
+        if(!inputValues.emergencyContactMobile || !Validators.isNumber(inputValues.emergencyContactMobile)) return false
+        return true
     }
 
     return (
@@ -89,18 +106,18 @@ function NewMember(){
 
                 <div className='duoRow defaultSpacing'>
                     <div className='soloRow'>
-                        <label htmlFor="emergencyContact-lastname">Lastname</label>
+                        <label htmlFor="emergencyContactLastname">Lastname</label>
                         <input name="emergencyContactLastname" value={inputsValues?.emergencyContactLastname || ''} onChange={handleChange} id="emergencyContact-lastname" type="text"/>
                     </div>
                     <div className='soloRow'>
-                        <label htmlFor="emergencyContact-firstname">Firstname</label>
+                        <label htmlFor="emergencyContactFirstname">Firstname</label>
                         <input name="emergencyContactFirstname" value={inputsValues?.emergencyContactFirstname || ''} onChange={handleChange} id="emergencyContact-firstname" type="text"/>
                     </div>
                 </div>
 
                 <div className='duoRow defaultSpacing'>
                     <div className='soloRow'>
-                        <label htmlFor="emergencyContact-mobile">Mobile</label>
+                        <label htmlFor="emergencyContactMobile">Mobile</label>
                         <input name="emergencyContactMobile" value={inputsValues?.emergencyContactMobile || ''} onChange={handleChange} id="emergencyContact-mobile" type="text"/>
                     </div>
                     <div className='soloRow'>
