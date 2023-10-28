@@ -5,19 +5,28 @@ import { Validators } from '../services/validator'
 
 function NewMember(){
 
-    const [inputsValues, setInputsValues] = useState<IState>({})
-    const [formErrors, setFormErrors] = useState<IFormErrors>(initialStateFormErrors)
+    const [inputsStates, setinputsStates] = useState<IInputs>({})
+    // const [formErrors, setFormErrors] = useState<IFormErrors>(initialStateFormErrors)
+    // name, value, error, untouched, mandatory
 
     function handleChange(event: React.FormEvent<HTMLInputElement>){
-        const name = event.currentTarget.name
-        const value = event.currentTarget.value
-        setInputsValues(previousState => ({...previousState, [name] : value}))
+        const {name, value} = event.currentTarget
+        setinputsStates(previousState => ({...previousState, [name] : {...previousState[name], value : value }}))
+        handleValidation(inputsStates)
     }
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>){
         event.preventDefault()
-        console.log(inputsValues)
-        if(!handleValidation(inputsValues)) console.error('invalid form')
+        console.log(inputsStates)
+        if(!handleValidation(inputsStates)) console.error('invalid form')
+    }
+
+    function setInputError(inputName : string, errorStatus : boolean){
+        setinputsStates(previousState => ({...previousState, [inputName] : {...previousState[inputName], error : errorStatus }}))
+    }
+
+    function resetInputsErrors(){
+
     }
 
     function handleValidation(inputValues : IState) : boolean{
@@ -26,6 +35,24 @@ function NewMember(){
         if(!inputValues.firstname || !Validators.isName(inputValues.firstname)) setFormErrors(previousState => ({...previousState, firstname : true}))
         if(!inputValues.birthdate || !Validators.isDate(inputValues.birthdate)) setFormErrors(previousState => ({...previousState, gender : true}))
         if(!inputValues.postalcode || !Validators.isNumber(inputValues.postalcode)) setFormErrors(previousState => ({...previousState, postalcode : true}))
+        if(!inputValues.city || !Validators.isName(inputValues.city)) setFormErrors(previousState => ({...previousState, city : true}))
+        if(!inputValues.phone || !Validators.isNumber(inputValues.phone)) setFormErrors(previousState => ({...previousState, phone : true}))
+        if(!inputValues.email || !Validators.isEmail(inputValues.email)) setFormErrors(previousState => ({...previousState, email : true}))
+        if(!inputValues.mobile || !Validators.isNumber(inputValues.mobile)) setFormErrors(previousState => ({...previousState, mobile : true}))
+        if(!inputValues.emergencyContactLastname || !Validators.isName(inputValues.emergencyContactLastname)) setFormErrors(previousState => ({...previousState, emergencyContactLastname : true}))
+        if(!inputValues.emergencyContactFirstname || !Validators.isName(inputValues.emergencyContactFirstname)) setFormErrors(previousState => ({...previousState, emergencyContactFirstname : true}))
+        if(!inputValues.emergencyContactMobile || !Validators.isNumber(inputValues.emergencyContactMobile)) setFormErrors(previousState => ({...previousState, emergencyContactMobile : true}))
+        if(JSON.stringify(formErrors) != JSON.stringify(initialStateFormErrors)) return false
+        return true
+    }
+
+    function handleRealtimeValidation(inputValues : IState) : boolean{
+        setFormErrors(initialStateFormErrors)
+        if(!inputValues.lastname || !Validators.isName(inputValues.lastname)) setFormErrors(previousState => ({...previousState, lastname : true}))
+        if(!inputValues.firstname || !Validators.isName(inputValues.firstname)) setFormErrors(previousState => ({...previousState, firstname : true}))
+        if(!inputValues.birthdate || !Validators.isDate(inputValues.birthdate)) setFormErrors(previousState => ({...previousState, gender : true}))
+        if(!inputValues.postalcode || !Validators.isNumber(inputValues.postalcode)) setFormErrors(previousState => ({...previousState, postalcode : true}))
+        if(!inputValues.city || !Validators.isName(inputValues.city)) setFormErrors(previousState => ({...previousState, city : true}))
         if(!inputValues.phone || !Validators.isNumber(inputValues.phone)) setFormErrors(previousState => ({...previousState, phone : true}))
         if(!inputValues.email || !Validators.isEmail(inputValues.email)) setFormErrors(previousState => ({...previousState, email : true}))
         if(!inputValues.mobile || !Validators.isNumber(inputValues.mobile)) setFormErrors(previousState => ({...previousState, mobile : true}))
@@ -44,62 +71,62 @@ function NewMember(){
 
                 <div className='duoRow'>
                     <div className='soloRow'>
-                        <div className='labelErrorContainer'><label htmlFor="lastname">Lastname</label>{formErrors.lastname && <span>Error Message</span>}</div>
-                        <input name="lastname" value={inputsValues?.lastname || ''} onChange={handleChange} id="lastname" type="text"/>
+                        <div className='labelErrorContainer'><label htmlFor="lastname">Lastname</label>{inputsStates?.lastname?.error && <span>Error Message</span>}</div>
+                        <input name="lastname" value={inputsStates?.lastname?.value || ''} onChange={handleChange} id="lastname" type="text"/>
                     </div>
                     <div className='soloRow'>
-                        <div className='labelErrorContainer'><label htmlFor="firstname">Firstname</label>{formErrors.firstname && <span>Error Message</span>}</div>
-                        <input name="firstname" value={inputsValues?.firstname || ''} onChange={handleChange} id="firstname" type="text"/>
+                        <div className='labelErrorContainer'><label htmlFor="firstname">Firstname</label>{inputsStates?.firstname?.error && <span>Error Message</span>}</div>
+                        <input name="firstname" value={inputsStates?.firstname?.value || ''} onChange={handleChange} id="firstname" type="text"/>
                     </div>
                 </div>
 
                 <div className='duoRow defaultSpacing'>
                     <div className='soloRow'>
-                        <div className='labelErrorContainer'><label htmlFor="birthdate">Birthdate</label>{formErrors.birthdate && <span>Error Message</span>}</div>
-                        <input name="birthdate" value={inputsValues?.birthdate || ''} onChange={handleChange} id="birthdate" type="text"/>
+                        <div className='labelErrorContainer'><label htmlFor="birthdate">Birthdate</label>{inputsStates?.birthdate?.error && <span>Error Message</span>}</div>
+                        <input name="birthdate" value={inputsStates?.birthdate?.value || ''} onChange={handleChange} id="birthdate" type="text"/>
                     </div>
                     <div className='soloRow'>
-                        <div className='labelErrorContainer'><label htmlFor="gender">Gender</label>{formErrors.gender && <span>Error Message</span>}</div>
-                        <input name="gender" value={inputsValues?.gender || ''} onChange={handleChange} id="gender" type="text"/>
+                        <div className='labelErrorContainer'><label htmlFor="gender">Gender</label>{inputsStates?.gender?.error && <span>Error Message</span>}</div>
+                        <input name="gender" value={inputsStates?.gender?.value || ''} onChange={handleChange} id="gender" type="text"/>
                     </div>
                 </div>
 
                 <div className='soloRow defaultSpacing'>
-                    <div className='labelErrorContainer'><label htmlFor="address1">Address [1]</label>{formErrors.address1 && <span>Error Message</span>}</div>
-                    <input name="address1" value={inputsValues?.address1 || ''} onChange={handleChange} id="address1" type="text"/>
+                    <div className='labelErrorContainer'><label htmlFor="address1">Address [1]</label>{inputsStates?.address1?.error && <span>Error Message</span>}</div>
+                    <input name="address1" value={inputsStates?.address1?.value || ''} onChange={handleChange} id="address1" type="text"/>
                 </div>
 
                 <div className='soloRow defaultSpacing'>
-                    <div className='labelErrorContainer'><label htmlFor="address2">Address [2]</label>{formErrors.address2 && <span>Error Message</span>}</div>
-                    <input name="address2" value={inputsValues?.address2 || ''} onChange={handleChange} id="address2" type="text"/>
+                    <div className='labelErrorContainer'><label htmlFor="address2">Address [2]</label>{inputsStates?.address2?.error && <span>Error Message</span>}</div>
+                    <input name="address2" value={inputsStates?.address2?.value || ''} onChange={handleChange} id="address2" type="text"/>
                 </div>
 
                 <div className='duoRow defaultSpacing'>
                     <div className='soloRow'>
-                        <div className='labelErrorContainer'><label htmlFor="postalcode">Postal Code</label>{formErrors.postalcode && <span>Error Message</span>}</div>
-                        <input name="postalcode" value={inputsValues?.postalcode || ''} onChange={handleChange} id="postalcode" type="text"/>
+                        <div className='labelErrorContainer'><label htmlFor="postalcode">Postal Code</label>{inputsStates?.postalcode?.error && <span>Error Message</span>}</div>
+                        <input name="postalcode" value={inputsStates?.postalcode?.value || ''} onChange={handleChange} id="postalcode" type="text"/>
                     </div>
                     <div className='soloRow'>
-                        <div className='labelErrorContainer'><label htmlFor="city">City</label>{formErrors.city && <span>Error Message</span>}</div>
-                        <input name="city" value={inputsValues?.city || ''} onChange={handleChange} id="city" type="text"/>
-                    </div>
-                </div>
-
-                <div className='duoRow defaultSpacing'>
-                    <div className='soloRow'>
-                        <div className='labelErrorContainer'><label htmlFor="phone">Phone</label>{formErrors.phone && <span>Error Message</span>}</div>
-                        <input name="phone" value={inputsValues?.phone || ''} onChange={handleChange} id="phone" type="text"/>
-                    </div>
-                    <div className='soloRow'>
-                        <div className='labelErrorContainer'><label htmlFor="email">Email</label>{formErrors.email && <span>Error Message</span>}</div>
-                        <input name="email" value={inputsValues?.email || ''} onChange={handleChange} id="email" type="text"/>
+                        <div className='labelErrorContainer'><label htmlFor="city">City</label>{inputsStates?.city?.error && <span>Error Message</span>}</div>
+                        <input name="city" value={inputsStates?.city?.value || ''} onChange={handleChange} id="city" type="text"/>
                     </div>
                 </div>
 
                 <div className='duoRow defaultSpacing'>
                     <div className='soloRow'>
-                        <div className='labelErrorContainer'><label htmlFor="mobile">Mobile</label>{formErrors.mobile && <span>Error Message</span>}</div>
-                        <input name="mobile" value={inputsValues?.mobile || ''} onChange={handleChange} id="mobile" type="text"/>
+                        <div className='labelErrorContainer'><label htmlFor="phone">Phone</label>{inputsStates?.phone?.error && <span>Error Message</span>}</div>
+                        <input name="phone" value={inputsStates?.phone?.value || ''} onChange={handleChange} id="phone" type="text"/>
+                    </div>
+                    <div className='soloRow'>
+                        <div className='labelErrorContainer'><label htmlFor="email">Email</label>{inputsStates?.email?.error && <span>Error Message</span>}</div>
+                        <input name="email" value={inputsStates?.email?.value || ''} onChange={handleChange} id="email" type="text"/>
+                    </div>
+                </div>
+
+                <div className='duoRow defaultSpacing'>
+                    <div className='soloRow'>
+                        <div className='labelErrorContainer'><label htmlFor="mobile">Mobile</label>{inputsStates?.mobile?.error && <span>Error Message</span>}</div>
+                        <input name="mobile" value={inputsStates?.mobile?.value || ''} onChange={handleChange} id="mobile" type="text"/>
                     </div>
                     <div className='soloRow'>
                     </div>
@@ -107,19 +134,19 @@ function NewMember(){
 
                 <div className='duoRow defaultSpacing'>
                     <div className='soloRow'>
-                        <div className='labelErrorContainer'><label htmlFor="emergencyContactLastname">Lastname</label>{formErrors.emergencyContactLastname && <span>Error Message</span>}</div>
-                        <input name="emergencyContactLastname" value={inputsValues?.emergencyContactLastname || ''} onChange={handleChange} id="emergencyContact-lastname" type="text"/>
+                        <div className='labelErrorContainer'><label htmlFor="emergencyContactLastname">Lastname</label>{inputsStates?.emergencyContactLastname?.error && <span>Error Message</span>}</div>
+                        <input name="emergencyContactLastname" value={inputsStates?.emergencyContactLastname?.value || ''} onChange={handleChange} id="emergencyContact-lastname" type="text"/>
                     </div>
                     <div className='soloRow'>
-                        <div className='labelErrorContainer'><label htmlFor="emergencyContactFirstname">Firstname</label>{formErrors.emergencyContactFirstname && <span>Error Message</span>}</div>
-                        <input name="emergencyContactFirstname" value={inputsValues?.emergencyContactFirstname || ''} onChange={handleChange} id="emergencyContact-firstname" type="text"/>
+                        <div className='labelErrorContainer'><label htmlFor="emergencyContactFirstname">Firstname</label>{inputsStates?.emergencyContactFirstname?.error && <span>Error Message</span>}</div>
+                        <input name="emergencyContactFirstname" value={inputsStates?.emergencyContactFirstname?.value || ''} onChange={handleChange} id="emergencyContact-firstname" type="text"/>
                     </div>
                 </div>
 
                 <div className='duoRow defaultSpacing'>
                     <div className='soloRow'>
-                        <div className='labelErrorContainer'><label htmlFor="emergencyContactMobile">Mobile</label>{formErrors.emergencyContactMobile && <span>Error Message</span>}</div>
-                        <input name="emergencyContactMobile" value={inputsValues?.emergencyContactMobile || ''} onChange={handleChange} id="emergencyContact-mobile" type="text"/>
+                        <div className='labelErrorContainer'><label htmlFor="emergencyContactMobile">Mobile</label>{inputsStates?.emergencyContactMobile?.error && <span>Error Message</span>}</div>
+                        <input name="emergencyContactMobile" value={inputsStates?.emergencyContactMobile?.value || ''} onChange={handleChange} id="emergencyContact-mobile" type="text"/>
                     </div>
                     <div className='soloRow'>
                     </div>
@@ -153,8 +180,17 @@ interface IState {
     emergencyContactMobile?: string
 }
 
-interface IFormErrors {
-    lastname?: boolean
+type IInputs = {
+    [name : string] : {
+        value : string, 
+        error : boolean, 
+        untouched : boolean, 
+        mandatory : boolean,
+    }
+}
+
+type IFormErrors = {[name : string] : boolean}
+    /*lastname?: boolean
     firstname?: boolean
     birthdate?: boolean
     gender?: boolean
@@ -167,14 +203,16 @@ interface IFormErrors {
     mobile?: boolean
     emergencyContactLastname?: boolean
     emergencyContactFirstname?: boolean
-    emergencyContactMobile?: boolean
-}
+    emergencyContactMobile?: boolean*/
 
-const initialStateFormErrors = {
+const initialStateFormErrors : IFormErrors = {
     lastname : false,
     firstname : false,
     birthdate : false,
     gender : false,
+    address1 : false,
+    address2 : false,
+    city: false,
     postalcode : false,
     phone : false,
     email : false,
