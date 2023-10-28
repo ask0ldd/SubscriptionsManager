@@ -5,7 +5,7 @@ import { Validators } from '../services/validator'
 
 function NewMember(){
 
-    const [inputsStates, setinputsStates] = useState<IInputs>({})
+    const [inputsStates, setinputsStates] = useState<IInputs>(initialInputsState)
     // const [formErrors, setFormErrors] = useState<IFormErrors>(initialStateFormErrors)
     // name, value, error, untouched, mandatory
 
@@ -26,40 +26,27 @@ function NewMember(){
     }
 
     function resetInputsErrors(){
-
+        let updatedInputStatesCopy = {}
+        Object.keys(inputsStates).forEach((key) => updatedInputStatesCopy = {...updatedInputStatesCopy, [key] : {...inputsStates[key], error : false }})
+        setinputsStates(updatedInputStatesCopy)
     }
 
     function handleValidation(inputValues : IState) : boolean{
-        setFormErrors(initialStateFormErrors)
-        if(!inputValues.lastname || !Validators.isName(inputValues.lastname)) setFormErrors(previousState => ({...previousState, lastname : true}))
-        if(!inputValues.firstname || !Validators.isName(inputValues.firstname)) setFormErrors(previousState => ({...previousState, firstname : true}))
-        if(!inputValues.birthdate || !Validators.isDate(inputValues.birthdate)) setFormErrors(previousState => ({...previousState, gender : true}))
-        if(!inputValues.postalcode || !Validators.isNumber(inputValues.postalcode)) setFormErrors(previousState => ({...previousState, postalcode : true}))
-        if(!inputValues.city || !Validators.isName(inputValues.city)) setFormErrors(previousState => ({...previousState, city : true}))
-        if(!inputValues.phone || !Validators.isNumber(inputValues.phone)) setFormErrors(previousState => ({...previousState, phone : true}))
-        if(!inputValues.email || !Validators.isEmail(inputValues.email)) setFormErrors(previousState => ({...previousState, email : true}))
-        if(!inputValues.mobile || !Validators.isNumber(inputValues.mobile)) setFormErrors(previousState => ({...previousState, mobile : true}))
-        if(!inputValues.emergencyContactLastname || !Validators.isName(inputValues.emergencyContactLastname)) setFormErrors(previousState => ({...previousState, emergencyContactLastname : true}))
-        if(!inputValues.emergencyContactFirstname || !Validators.isName(inputValues.emergencyContactFirstname)) setFormErrors(previousState => ({...previousState, emergencyContactFirstname : true}))
-        if(!inputValues.emergencyContactMobile || !Validators.isNumber(inputValues.emergencyContactMobile)) setFormErrors(previousState => ({...previousState, emergencyContactMobile : true}))
-        if(JSON.stringify(formErrors) != JSON.stringify(initialStateFormErrors)) return false
-        return true
-    }
-
-    function handleRealtimeValidation(inputValues : IState) : boolean{
-        setFormErrors(initialStateFormErrors)
-        if(!inputValues.lastname || !Validators.isName(inputValues.lastname)) setFormErrors(previousState => ({...previousState, lastname : true}))
-        if(!inputValues.firstname || !Validators.isName(inputValues.firstname)) setFormErrors(previousState => ({...previousState, firstname : true}))
-        if(!inputValues.birthdate || !Validators.isDate(inputValues.birthdate)) setFormErrors(previousState => ({...previousState, gender : true}))
-        if(!inputValues.postalcode || !Validators.isNumber(inputValues.postalcode)) setFormErrors(previousState => ({...previousState, postalcode : true}))
-        if(!inputValues.city || !Validators.isName(inputValues.city)) setFormErrors(previousState => ({...previousState, city : true}))
-        if(!inputValues.phone || !Validators.isNumber(inputValues.phone)) setFormErrors(previousState => ({...previousState, phone : true}))
-        if(!inputValues.email || !Validators.isEmail(inputValues.email)) setFormErrors(previousState => ({...previousState, email : true}))
-        if(!inputValues.mobile || !Validators.isNumber(inputValues.mobile)) setFormErrors(previousState => ({...previousState, mobile : true}))
-        if(!inputValues.emergencyContactLastname || !Validators.isName(inputValues.emergencyContactLastname)) setFormErrors(previousState => ({...previousState, emergencyContactLastname : true}))
-        if(!inputValues.emergencyContactFirstname || !Validators.isName(inputValues.emergencyContactFirstname)) setFormErrors(previousState => ({...previousState, emergencyContactFirstname : true}))
-        if(!inputValues.emergencyContactMobile || !Validators.isNumber(inputValues.emergencyContactMobile)) setFormErrors(previousState => ({...previousState, emergencyContactMobile : true}))
-        if(JSON.stringify(formErrors) != JSON.stringify(initialStateFormErrors)) return false
+        resetInputsErrors()
+        if(!inputValues.lastname || !Validators.isName(inputValues.lastname)) setInputError('lastname', true)
+        if(!inputValues.firstname || !Validators.isName(inputValues.firstname)) setInputError('firstname', true)
+        if(!inputValues.birthdate || !Validators.isDate(inputValues.birthdate)) setInputError('gender', true)
+        if(!inputValues.postalcode || !Validators.isNumber(inputValues.postalcode)) setInputError('postalcode', true)
+        if(!inputValues.city || !Validators.isName(inputValues.city)) setInputError('city', true)
+        if(!inputValues.phone || !Validators.isNumber(inputValues.phone)) setInputError('phone', true)
+        if(!inputValues.email || !Validators.isEmail(inputValues.email)) setInputError('email', true)
+        if(!inputValues.mobile || !Validators.isNumber(inputValues.mobile)) setInputError('mobile', true)
+        if(!inputValues.emergencyContactLastname || !Validators.isName(inputValues.emergencyContactLastname)) setInputError('emergencyContactLastname', true)
+        if(!inputValues.emergencyContactFirstname || !Validators.isName(inputValues.emergencyContactFirstname)) setInputError('emergencyContactFirstname', true)
+        if(!inputValues.emergencyContactMobile || !Validators.isNumber(inputValues.emergencyContactMobile)) setInputError('emergencyContactMobile', true)
+        const errors : boolean[] = []
+        Object.keys(inputsStates).forEach((key) => errors.push(inputsStates[key].error))
+        if (errors.includes(false)) return false
         return true
     }
 
@@ -189,7 +176,7 @@ type IInputs = {
     }
 }
 
-type IFormErrors = {[name : string] : boolean}
+// type IFormErrors = {[name : string] : boolean}
     /*lastname?: boolean
     firstname?: boolean
     birthdate?: boolean
@@ -205,7 +192,7 @@ type IFormErrors = {[name : string] : boolean}
     emergencyContactFirstname?: boolean
     emergencyContactMobile?: boolean*/
 
-const initialStateFormErrors : IFormErrors = {
+/*const initialStateFormErrors : IFormErrors = {
     lastname : false,
     firstname : false,
     birthdate : false,
@@ -220,4 +207,21 @@ const initialStateFormErrors : IFormErrors = {
     emergencyContactLastname : false,
     emergencyContactFirstname : false,
     emergencyContactMobile : false,
+}*/
+
+const initialInputsState = {
+    lastname : {value : '', error : false, untouched : true, mandatory : false,},
+    firstname : {value : '', error : false, untouched : true, mandatory : false,},
+    birthdate : {value : '', error : false, untouched : true, mandatory : false,},
+    gender : {value : '', error : false, untouched : true, mandatory : false,},
+    address1 : {value : '', error : false, untouched : true, mandatory : false,},
+    address2 : {value : '', error : false, untouched : true, mandatory : false,},
+    city: {value : '', error : false, untouched : true, mandatory : false,},
+    postalcode : {value : '', error : false, untouched : true, mandatory : false,},
+    phone : {value : '', error : false, untouched : true, mandatory : false,},
+    email : {value : '', error : false, untouched : true, mandatory : false,},
+    mobile : {value : '', error : false, untouched : true, mandatory : false,},
+    emergencyContactLastname : {value : '', error : false, untouched : true, mandatory : false,},
+    emergencyContactFirstname : {value : '', error : false, untouched : true, mandatory : false,},
+    emergencyContactMobile : {value : '', error : false, untouched : true, mandatory : false,},
 }
