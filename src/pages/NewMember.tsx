@@ -170,22 +170,24 @@ export default NewMember
 
 const stateBase = {value : '', error : false, untouched : true, mandatory : true}
 
-const initialInputsState : IInputs = {
-    lastname : {...stateBase, validators : []},
-    firstname : {...stateBase, validators : []},
-    birthdate : {...stateBase, validators : []},
-    gender : {...stateBase, validators : []},
-    address1 : {...stateBase, validators : []},
-    address2 : {...stateBase, validators : []},
-    city: {...stateBase, validators : []},
-    postalcode : {...stateBase, validators : []},
-    phone : {...stateBase, validators : []},
-    email : {...stateBase, validators : []},
-    mobile : {...stateBase, validators : []},
-    emergencyContactLastname : {...stateBase, validators : []},
-    emergencyContactFirstname : {...stateBase, validators : []},
-    emergencyContactMobile : {...stateBase, validators : []},
-}
+const fieldnames = [
+    'lastname', 
+    'firstname', 
+    'birthdate', 
+    'gender', 
+    'address1', 
+    'address2', 
+    'city', 
+    'postalcode', 
+    'phone', 
+    'email', 
+    'mobile', 
+    'emergencyContactLastname', 
+    'emergencyContactFirstname', 
+    'emergencyContactMobile',
+]
+
+const initialInputsState = fieldnames.reduce((acc : IInputs, value : string) => ({...acc, [value] : {...stateBase, validators : []}}), {})
 
 function setValidators(initialInputsState : IInputs){
     initialInputsState.lastname.validators.push(Validators.isName)
