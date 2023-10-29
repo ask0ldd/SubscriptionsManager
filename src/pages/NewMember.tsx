@@ -6,6 +6,12 @@ import { IInputs } from '../hooks/useFormManager'
 
 function NewMember(){
 
+    // generate the initial state out of the fields names array
+    let initialInputsState = fieldnames.reduce((acc : IInputs, value : string) => ({...acc, [value] : {...stateBase, validators : []}}), {})
+    // set the listed fields as non mandatory
+    nonMandatoryFields.forEach(field => { 
+        initialInputsState = {...initialInputsState, [field] : {...initialInputsState[field], mandatory : false}}
+    })
     setValidators(initialInputsState)
 
     const [inputsStates, setinputsStates] = useState<IInputs>(initialInputsState)
@@ -187,8 +193,12 @@ const fieldnames = [
     'emergencyContactMobile',
 ]
 
-const initialInputsState = fieldnames.reduce((acc : IInputs, value : string) => ({...acc, [value] : {...stateBase, validators : []}}), {})
+const nonMandatoryFields = [
+    'address2',
+    'phone'
+]
 
+// add the required validators to all the listed fields
 function setValidators(initialInputsState : IInputs){
     initialInputsState.lastname.validators.push(Validators.isName)
     initialInputsState.firstname.validators.push(Validators.isName)
