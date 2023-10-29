@@ -49,4 +49,6 @@
 
 .labelErrorContainer span {
   color: #a82663;
+  background: linear-gradient(90deg, #a8266300 0%, #a8266320 100%);
+  padding: 0 0.5rem;
 }

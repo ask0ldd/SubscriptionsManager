@@ -18,39 +18,29 @@ function NewMember(){
     function handleSubmit(event: React.FormEvent<HTMLFormElement>){
         event.preventDefault()
         console.log(inputsStates)
-        if(!handleValidation(inputsStates)) console.error('invalid form')
+        if(!fullFormValidation(inputsStates)) console.error('invalid form')
     }
 
     function setInputError(inputName : string, errorStatus : boolean){
         setinputsStates(previousState => ({...previousState, [inputName] : {...previousState[inputName], error : errorStatus }}))
     }
 
-    function resetInputsErrors(){
+    /*function resetInputsErrors(){
         let updatedInputStatesCopy = {}
         Object.keys(inputsStates).forEach((key) => updatedInputStatesCopy = {...updatedInputStatesCopy, [key] : {...inputsStates[key], error : false }})
         setinputsStates(updatedInputStatesCopy)
-    }
+    }*/
 
-    function handleValidation(inputValues : IInputs) : boolean{
-        resetInputsErrors()
-        /*if(!Validators.isName(inputValues.lastname.value)) setInputError('lastname', true)
-        if(!Validators.isName(inputValues.firstname.value)) setInputError('firstname', true)
-        if(!Validators.isDate(inputValues.birthdate.value)) setInputError('gender', true)
-        if(!Validators.isNumber(inputValues.postalcode.value)) setInputError('postalcode', true)
-        if(!Validators.isName(inputValues.city.value)) setInputError('city', true)
-        if(!Validators.isNumber(inputValues.phone.value)) setInputError('phone', true)
-        if(!Validators.isEmail(inputValues.email.value)) setInputError('email', true)
-        if(!Validators.isNumber(inputValues.mobile.value)) setInputError('mobile', true)
-        if(!Validators.isName(inputValues.emergencyContactLastname.value)) setInputError('emergencyContactLastname', true)
-        if(!Validators.isName(inputValues.emergencyContactFirstname.value)) setInputError('emergencyContactFirstname', true)
-        if(!Validators.isNumber(inputValues.emergencyContactMobile.value)) setInputError('emergencyContactMobile', true)
-        const errors : boolean[] = []
-        Object.keys(inputsStates).forEach((key) => errors.push(inputsStates[key].error))
-        if (errors.includes(false)) return false
-        return true*/
-
+    function fullFormValidation(inputsStates : IInputs) : boolean{
+        // resetInputsErrors()
         const errorsKeys = []
         Object.keys(inputsStates).forEach((key) => {
+            // if input blank and non mandatory
+            if(!inputsStates[key].mandatory && inputsStates[key].value == "") {
+                setInputError(key, false)
+                return true
+            }
+            // process all validators for the input
             const validationResult = inputsStates[key].validators.reduce((accumulator, validator) => accumulator + Number(validator(inputsStates[key].value)), 0)
             if(validationResult < inputsStates[key].validators.length) {
                 setInputError(key, true)
@@ -64,6 +54,10 @@ function NewMember(){
     }
 
     function realtimeInputValidation(name : string, value : any) : boolean{
+        if(!inputsStates[name].mandatory && inputsStates[name].value == "") {
+            setInputError(name, false)
+            return true
+        }
         const validationResult = inputsStates[name].validators.reduce((accumulator, validator) => accumulator + Number(validator(value)), 0)
         if(validationResult < inputsStates[name].validators.length) {
             setInputError(name, true)
@@ -78,6 +72,9 @@ function NewMember(){
         initialInputsState.firstname.validators.push(Validators.isName)
         initialInputsState.birthdate.validators.push(Validators.isDate)
         initialInputsState.postalcode.validators.push(Validators.isNumber)
+        initialInputsState.gender.validators.push(Validators.isGender)
+        initialInputsState.address1.validators.push(Validators.isName)
+        initialInputsState.address2.validators.push(Validators.isName)
         initialInputsState.city.validators.push(Validators.isName)
         initialInputsState.phone.validators.push(Validators.isNumber)
         initialInputsState.email.validators.push(Validators.isEmail)
@@ -187,23 +184,6 @@ function NewMember(){
 
 export default NewMember
 
-/*interface IState {
-    lastname?: string
-    firstname?: string
-    birthdate?: string
-    gender?: 'M' | 'F' | 'NC'
-    address1?: string
-    address2?: string
-    postalcode?: string
-    city?: string
-    phone?: string
-    email?: string
-    mobile?: string
-    emergencyContactLastname?: string
-    emergencyContactFirstname?: string
-    emergencyContactMobile?: string
-}*/
-
 interface IInputs {
     [key: string]: {
         value: string,
@@ -217,18 +197,18 @@ interface IInputs {
 type validator = (value : any) => boolean
 
 const initialInputsState : IInputs = {
-    lastname : {value : '', error : false, untouched : true, mandatory : false, validators : [],},
-    firstname : {value : '', error : false, untouched : true, mandatory : false, validators : [],},
-    birthdate : {value : '', error : false, untouched : true, mandatory : false, validators : [],},
-    gender : {value : '', error : false, untouched : true, mandatory : false, validators : [],},
-    address1 : {value : '', error : false, untouched : true, mandatory : false, validators : [],},
+    lastname : {value : '', error : false, untouched : true, mandatory : true, validators : [],},
+    firstname : {value : '', error : false, untouched : true, mandatory : true, validators : [],},
+    birthdate : {value : '', error : false, untouched : true, mandatory : true, validators : [],},
+    gender : {value : '', error : false, untouched : true, mandatory : true, validators : [],},
+    address1 : {value : '', error : false, untouched : true, mandatory : true, validators : [],},
     address2 : {value : '', error : false, untouched : true, mandatory : false, validators : [],},
-    city: {value : '', error : false, untouched : true, mandatory : false, validators : [],},
-    postalcode : {value : '', error : false, untouched : true, mandatory : false, validators : [],},
+    city: {value : '', error : false, untouched : true, mandatory : true, validators : [],},
+    postalcode : {value : '', error : false, untouched : true, mandatory : true, validators : [],},
     phone : {value : '', error : false, untouched : true, mandatory : false, validators : [],},
-    email : {value : '', error : false, untouched : true, mandatory : false, validators : [],},
-    mobile : {value : '', error : false, untouched : true, mandatory : false, validators : [],},
-    emergencyContactLastname : {value : '', error : false, untouched : true, mandatory : false, validators : [],},
-    emergencyContactFirstname : {value : '', error : false, untouched : true, mandatory : false, validators : [],},
-    emergencyContactMobile : {value : '', error : false, untouched : true, mandatory : false, validators : [],},
+    email : {value : '', error : false, untouched : true, mandatory : true, validators : [],},
+    mobile : {value : '', error : false, untouched : true, mandatory : true, validators : [],},
+    emergencyContactLastname : {value : '', error : false, untouched : true, mandatory : true, validators : [],},
+    emergencyContactFirstname : {value : '', error : false, untouched : true, mandatory : true, validators : [],},
+    emergencyContactMobile : {value : '', error : false, untouched : true, mandatory : true, validators : [],},
 }

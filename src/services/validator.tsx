@@ -30,7 +30,11 @@ export class Validators {
     }
 
     static isGender(inputValue : string) : boolean{
+        return ['M', 'F', 'NC'].includes(inputValue)
+    }
 
+    static isEmpty(inputValue : string) : boolean{
+        return inputValue.length===0
     }
 
     static isOneRadioChecked(radios : HTMLInputElement[]) : boolean{
