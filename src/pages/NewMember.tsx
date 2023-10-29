@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Header from '../components/Header'
 import '../style/NewMember.css'
 import { Validators } from '../services/validator'
+import { IInputs } from '../hooks/useFormManager'
 
 function NewMember(){
 
@@ -65,23 +66,6 @@ function NewMember(){
         }
         setInputError(name, false)
         return true
-    }
-
-    function setValidators(initialInputsState : IInputs){
-        initialInputsState.lastname.validators.push(Validators.isName)
-        initialInputsState.firstname.validators.push(Validators.isName)
-        initialInputsState.birthdate.validators.push(Validators.isDate)
-        initialInputsState.postalcode.validators.push(Validators.isNumber)
-        initialInputsState.gender.validators.push(Validators.isGender)
-        initialInputsState.address1.validators.push(Validators.isName)
-        initialInputsState.address2.validators.push(Validators.isName)
-        initialInputsState.city.validators.push(Validators.isName)
-        initialInputsState.phone.validators.push(Validators.isNumber)
-        initialInputsState.email.validators.push(Validators.isEmail)
-        initialInputsState.mobile.validators.push(Validators.isNumber)
-        initialInputsState.emergencyContactLastname.validators.push(Validators.isName)
-        initialInputsState.emergencyContactFirstname.validators.push(Validators.isName)
-        initialInputsState.emergencyContactMobile.validators.push(Validators.isNumber)
     }
 
     return (
@@ -184,31 +168,38 @@ function NewMember(){
 
 export default NewMember
 
-interface IInputs {
-    [key: string]: {
-        value: string,
-        error: boolean,
-        untouched: boolean,
-        mandatory: boolean,
-        validators: validator[],
-    }
-}
-
-type validator = (value : any) => boolean
+const stateBase = {value : '', error : false, untouched : true, mandatory : true}
 
 const initialInputsState : IInputs = {
-    lastname : {value : '', error : false, untouched : true, mandatory : true, validators : [],},
-    firstname : {value : '', error : false, untouched : true, mandatory : true, validators : [],},
-    birthdate : {value : '', error : false, untouched : true, mandatory : true, validators : [],},
-    gender : {value : '', error : false, untouched : true, mandatory : true, validators : [],},
-    address1 : {value : '', error : false, untouched : true, mandatory : true, validators : [],},
-    address2 : {value : '', error : false, untouched : true, mandatory : false, validators : [],},
-    city: {value : '', error : false, untouched : true, mandatory : true, validators : [],},
-    postalcode : {value : '', error : false, untouched : true, mandatory : true, validators : [],},
-    phone : {value : '', error : false, untouched : true, mandatory : false, validators : [],},
-    email : {value : '', error : false, untouched : true, mandatory : true, validators : [],},
-    mobile : {value : '', error : false, untouched : true, mandatory : true, validators : [],},
-    emergencyContactLastname : {value : '', error : false, untouched : true, mandatory : true, validators : [],},
-    emergencyContactFirstname : {value : '', error : false, untouched : true, mandatory : true, validators : [],},
-    emergencyContactMobile : {value : '', error : false, untouched : true, mandatory : true, validators : [],},
+    lastname : {...stateBase, validators : []},
+    firstname : {...stateBase, validators : []},
+    birthdate : {...stateBase, validators : []},
+    gender : {...stateBase, validators : []},
+    address1 : {...stateBase, validators : []},
+    address2 : {...stateBase, validators : []},
+    city: {...stateBase, validators : []},
+    postalcode : {...stateBase, validators : []},
+    phone : {...stateBase, validators : []},
+    email : {...stateBase, validators : []},
+    mobile : {...stateBase, validators : []},
+    emergencyContactLastname : {...stateBase, validators : []},
+    emergencyContactFirstname : {...stateBase, validators : []},
+    emergencyContactMobile : {...stateBase, validators : []},
+}
+
+function setValidators(initialInputsState : IInputs){
+    initialInputsState.lastname.validators.push(Validators.isName)
+    initialInputsState.firstname.validators.push(Validators.isName)
+    initialInputsState.birthdate.validators.push(Validators.isDate)
+    initialInputsState.postalcode.validators.push(Validators.isNumber)
+    initialInputsState.gender.validators.push(Validators.isGender)
+    initialInputsState.address1.validators.push(Validators.isName)
+    initialInputsState.address2.validators.push(Validators.isName)
+    initialInputsState.city.validators.push(Validators.isName)
+    initialInputsState.phone.validators.push(Validators.isNumber)
+    initialInputsState.email.validators.push(Validators.isEmail)
+    initialInputsState.mobile.validators.push(Validators.isNumber)
+    initialInputsState.emergencyContactLastname.validators.push(Validators.isName)
+    initialInputsState.emergencyContactFirstname.validators.push(Validators.isName)
+    initialInputsState.emergencyContactMobile.validators.push(Validators.isNumber)
 }
