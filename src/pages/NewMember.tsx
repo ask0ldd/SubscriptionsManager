@@ -8,13 +8,10 @@ function NewMember(){
     setValidators(initialInputsState)
 
     const [inputsStates, setinputsStates] = useState<IInputs>(initialInputsState)
-    // const [formErrors, setFormErrors] = useState<IFormErrors>(initialStateFormErrors)
-    // name, value, error, untouched, mandatory, validators : fn[]
 
     function handleChange(event: React.FormEvent<HTMLInputElement>){
         const {name, value} = event.currentTarget
         setinputsStates(previousState => ({...previousState, [name] : {...previousState[name], 'value' : value, untouched : false }}))
-        // handleValidation(inputsStates)
         realtimeInputValidation(name, value)
     }
 
@@ -36,7 +33,7 @@ function NewMember(){
 
     function handleValidation(inputValues : IInputs) : boolean{
         resetInputsErrors()
-        if(!Validators.isName(inputValues.lastname.value)) setInputError('lastname', true)
+        /*if(!Validators.isName(inputValues.lastname.value)) setInputError('lastname', true)
         if(!Validators.isName(inputValues.firstname.value)) setInputError('firstname', true)
         if(!Validators.isDate(inputValues.birthdate.value)) setInputError('gender', true)
         if(!Validators.isNumber(inputValues.postalcode.value)) setInputError('postalcode', true)
@@ -50,16 +47,29 @@ function NewMember(){
         const errors : boolean[] = []
         Object.keys(inputsStates).forEach((key) => errors.push(inputsStates[key].error))
         if (errors.includes(false)) return false
+        return true*/
+
+        const errorsKeys = []
+        Object.keys(inputsStates).forEach((key) => {
+            const validationResult = inputsStates[key].validators.reduce((accumulator, validator) => accumulator + Number(validator(inputsStates[key].value)), 0)
+            if(validationResult < inputsStates[key].validators.length) {
+                setInputError(key, true)
+                errorsKeys.push(key)
+            }else{
+                setInputError(key, false)
+            }
+        })
+        if(errorsKeys.length > 0 ) return false
         return true
     }
 
-    function realtimeInputValidation(name : string, value : any){
+    function realtimeInputValidation(name : string, value : any) : boolean{
         const validationResult = inputsStates[name].validators.reduce((accumulator, validator) => accumulator + Number(validator(value)), 0)
         if(validationResult < inputsStates[name].validators.length) {
-            inputsStates[name].error = true
+            setInputError(name, true)
             return false
         }
-        inputsStates[name].error = false
+        setInputError(name, false)
         return true
     }
 
@@ -201,7 +211,7 @@ interface IInputs {
         untouched: boolean,
         mandatory: boolean,
         validators: validator[],
-    };
+    }
 }
 
 type validator = (value : any) => boolean

@@ -29,6 +29,10 @@ export class Validators {
         return emailRegex.test(trimmedValue)
     }
 
+    static isGender(inputValue : string) : boolean{
+
+    }
+
     static isOneRadioChecked(radios : HTMLInputElement[]) : boolean{
         for (const radio of radios) {
             if (radio.checked) {
