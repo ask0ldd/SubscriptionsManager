@@ -3,22 +3,25 @@ import Header from '../components/Header'
 import '../style/NewRIB.css'
 import { IInputs, useFormManager } from '../hooks/useFormManager'
 import { Validators } from '../services/validator'
+import { useEffect } from 'react'
 
 function NewRIB(){
 
     // const [inputsValues, setInputsValues] = useState<IState>({})
 
-    const {inputsStates, setinputsStates, setValidator} = useFormManager(fieldnames, nonMandatoryFields)
+    const {inputsStates, setinputsStates, setValidator, updateVirtualFormField} = useFormManager(fieldnames, nonMandatoryFields)
 
-    setValidator('IBAN', Validators.isNumber)
-    setValidator('BIC', Validators.isNumber)
-    setValidator('Bank', Validators.isName)
-    setValidator('Owner', Validators.isName)
-    setValidator('Scan', Validators.isName)
+    useEffect(() => {
+        setValidator('IBAN', Validators.isNumber)
+        setValidator('BIC', Validators.isNumber)
+        setValidator('bank', Validators.isName)
+        setValidator('owner', Validators.isName)
+        setValidator('scan', Validators.isName)
+    }, [])
 
     function handleChange(event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>){
         const {name, value} = event.currentTarget
-        setinputsStates((previousState : IInputs) => ({...previousState, [name] : {...previousState[name], 'value' : value, untouched : false }}))
+        updateVirtualFormField(name, value)
         // realtimeInputValidation(name, value)
     }
 
@@ -35,7 +38,7 @@ function NewRIB(){
 
                 <div className='duoRow'>
                     <div className='soloRow'>
-                        <label htmlFor="IBAN">IBAN</label>
+                        <div className='labelErrorContainer'><label htmlFor="IBAN">IBAN</label>{inputsStates?.IBAN?.error && <span>Error Message</span>}</div>
                         <input name="IBAN" value={inputsStates?.IBAN?.value || ''} onChange={handleChange} id="IBAN" type="text"/>
                     </div>
                     <div className='soloRow'>
@@ -44,22 +47,22 @@ function NewRIB(){
 
                 <div className='duoRow defaultSpacing'>
                     <div className='soloRow'>
-                        <label htmlFor="BIC">Bank Identification Code</label>
+                        <div className='labelErrorContainer'><label htmlFor="BIC">Bank Identification Code</label>{inputsStates?.BIC?.error && <span>Error Message</span>}</div>
                         <input name="BIC" value={inputsStates?.BIC?.value || ''} onChange={handleChange} id="BIC" type="text"/>
                     </div>                
                     <div className='soloRow'>
-                        <label htmlFor="bank">Domiciliation</label>
+                        <div className='labelErrorContainer'><label htmlFor="bank">Domiciliation</label>{inputsStates?.bank?.error && <span>Error Message</span>}</div>
                         <input name="bank" value={inputsStates?.bank?.value || ''} onChange={handleChange} id="bank" type="text"/>
                     </div>
                 </div>
 
                 <div className='duoRow defaultSpacing'>
                     <div className='soloRow'>
-                        <label htmlFor="owner">Nom du Titulaire</label>
+                        <div className='labelErrorContainer'><label htmlFor="owner">Nom du Titulaire</label>{inputsStates?.owner?.error && <span>Error Message</span>}</div>
                         <input name="owner" value={inputsStates?.owner?.value || ''} onChange={handleChange} id="owner" type="text"/>
                     </div>                
                     <div className='soloRow'>
-                        <label htmlFor="scan">Scan Upload</label>
+                        <div className='labelErrorContainer'><label htmlFor="scan">Scan Upload</label>{inputsStates?.scan?.error && <span>Error Message</span>}</div>
                         <input name="scan" value={inputsStates?.scan?.value || ''} onChange={handleChange} id="scan" type="text"/>
                     </div>
                 </div>
@@ -73,13 +76,13 @@ function NewRIB(){
 
 export default NewRIB
 
-interface IState{
+/*interface IState{
     IBAN?: string
     BIC?: string
     bank?: string
     owner?: string
     scan?: string
-}
+}*/
 
 const fieldnames = [
     'IBAN', 
@@ -90,8 +93,5 @@ const fieldnames = [
 ]
 
 const nonMandatoryFields = [
-    'IBAN',
-    'BIC',
-    'bank', 
-    'owner', 
+    'scan', 
 ]
