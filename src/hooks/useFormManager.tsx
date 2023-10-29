@@ -15,10 +15,10 @@ export function useFormManager(fieldsNames : string[], nonMandatoryFields : stri
     const [inputsStates, setinputsStates] = useState<IInputs>(initialInputsState)
 
     function setValidator(name : string, validator : validator){
-        setinputsStates(previousState => ({...previousState, [name] : {...previousState[name], validator : [...previousState[name].validators, validator]}}))
+        setinputsStates(previousState => ({...previousState, [name] : {...previousState[name], validators : [...previousState[name].validators, validator]}}))
     }
 
-    return [inputsStates, setinputsStates]
+    return {inputsStates, setinputsStates, setValidator}
 
 }
 
