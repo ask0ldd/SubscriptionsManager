@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react"
 
 export function useFormManager(fieldsNames : string[], nonMandatoryFields : string[]){
@@ -17,6 +18,15 @@ export function useFormManager(fieldsNames : string[], nonMandatoryFields : stri
     function setValidator(name : string, validator : validator){
         if(!inputsStates[name]) console.error('wrong field name : ', name)
         setinputsStates(previousState => ({...previousState, [name] : {...previousState[name], validators : [...previousState[name].validators, validator]}}))
+    }
+
+    function setValidators(validationRules : {fieldName : string, validators : validator[]}[]){
+        validationRules.forEach(rules => {
+            if(rules.validators.length === 1) return setValidator(rules.fieldName, rules.validators[0])
+            rules.validators.forEach((rule, index) => {
+                setValidator(rules.fieldName, rules.validators[index])
+            })
+        })
     }
 
     function updateVirtualFormField(name : string, value : any){
@@ -42,7 +52,7 @@ export function useFormManager(fieldsNames : string[], nonMandatoryFields : stri
         return true
     }
 
-    return {inputsStates, setinputsStates, setValidator, updateVirtualFormField}
+    return {inputsStates, setinputsStates, setValidators, updateVirtualFormField}
 
 }
 

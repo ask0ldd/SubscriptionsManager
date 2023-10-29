@@ -1,7 +1,6 @@
-// import { useState } from 'react'
 import Header from '../components/Header'
 import '../style/NewRIB.css'
-import { IInputs, useFormManager } from '../hooks/useFormManager'
+import { useFormManager } from '../hooks/useFormManager'
 import { Validators } from '../services/validator'
 import { useEffect } from 'react'
 
@@ -9,14 +8,17 @@ function NewRIB(){
 
     // const [inputsValues, setInputsValues] = useState<IState>({})
 
-    const {inputsStates, setinputsStates, setValidator, updateVirtualFormField} = useFormManager(fieldnames, nonMandatoryFields)
+    const {inputsStates, setValidators, updateVirtualFormField} = useFormManager(fieldnames, nonMandatoryFields)
 
     useEffect(() => {
-        setValidator('IBAN', Validators.isNumber)
-        setValidator('BIC', Validators.isNumber)
-        setValidator('bank', Validators.isName)
-        setValidator('owner', Validators.isName)
-        setValidator('scan', Validators.isName)
+        setValidators(
+            [
+                {fieldName : 'IBAN', validators : [Validators.isNumber]},
+                {fieldName : 'BIC', validators : [Validators.isNumber]},
+                {fieldName : 'bank', validators : [Validators.isNumber]},
+                {fieldName : 'owner', validators : [Validators.isNumber]},
+                {fieldName : 'scan', validators : [Validators.isNumber]},
+            ])
     }, [])
 
     function handleChange(event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>){
@@ -75,14 +77,6 @@ function NewRIB(){
 }
 
 export default NewRIB
-
-/*interface IState{
-    IBAN?: string
-    BIC?: string
-    bank?: string
-    owner?: string
-    scan?: string
-}*/
 
 const fieldnames = [
     'IBAN', 
