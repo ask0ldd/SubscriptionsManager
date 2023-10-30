@@ -19,23 +19,24 @@ function NewRIB(){
         'scan', 
     ]
 
-    const {inputsStates, setValidators, updateVirtualFormField, fullFormValidation} = useFormManager(fieldnames, nonMandatoryFields)
+    const {inputsStates, setValidators, updateVirtualFormField, fullFormValidation, resetValidators} = useFormManager(fieldnames, nonMandatoryFields)
 
     useEffect(() => {
-        setValidators(
-            [
-                {fieldName : 'IBAN', validators : [Validators.isNumber]},
-                {fieldName : 'BIC', validators : [Validators.isNumber]},
-                {fieldName : 'bank', validators : [Validators.isName]},
-                {fieldName : 'owner', validators : [Validators.isName]},
-                {fieldName : 'scan', validators : [Validators.isNumber]},
-            ])
+        // help with double useeffect triggering in dev mode
+        resetValidators()
+
+        setValidators([
+            {fieldName : 'IBAN', validators : [Validators.isNumber, Validators.isBetween_0_and_99]},
+            {fieldName : 'BIC', validators : [Validators.isNumber]},
+            {fieldName : 'bank', validators : [Validators.isName]},
+            {fieldName : 'owner', validators : [Validators.isName]},
+            {fieldName : 'scan', validators : [Validators.isNumber]},
+        ])
     }, [])
 
     function handleChange(event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>){
         const {name, value} = event.currentTarget
         updateVirtualFormField(name, value)
-        // realtimeInputValidation(name, value)
     }
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>){

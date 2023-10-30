@@ -28,6 +28,14 @@ export function useFormManager(fieldsNames : string[], nonMandatoryFields : stri
         })
     }
 
+    function resetValidators(){
+        const inputsStatesCopy = {...inputsStates}
+        Object.keys(inputsStatesCopy).forEach((key) => {
+            inputsStatesCopy[key].validators = []
+        })
+        setinputsStates(inputsStatesCopy)
+    }
+
     function updateVirtualFormField(name : string, value : any){
         setinputsStates((previousState : IInputs) => ({...previousState, [name] : {...previousState[name], 'value' : value, untouched : false }}))
         realtimeInputValidation(name, value)
@@ -72,7 +80,7 @@ export function useFormManager(fieldsNames : string[], nonMandatoryFields : stri
         return true
     }
 
-    return {inputsStates, setinputsStates, setValidators, updateVirtualFormField, fullFormValidation}
+    return {inputsStates, setinputsStates, setValidators, updateVirtualFormField, fullFormValidation, resetValidators}
 
 }
 
