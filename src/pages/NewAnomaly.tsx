@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import Header from '../components/Header'
 import '../style/NewAnomaly.css'
 import { useFormManager } from '../hooks/useFormManager'

@@ -1,23 +1,49 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Header from '../components/Header'
 import '../style/NewRefund.css'
+import { Validators } from '../services/validator'
+import { useFormManager } from '../hooks/useFormManager'
 
 function NewRefund(){
 
-    const [inputsValues, setInputsValues] = useState<IState>({})
+    const fieldnames = [
+        'amount', 
+        'paymentMethod', 
+        'authorizedBy', 
+        'uploadedDoc', 
+        'notes', 
+    ]
+    
+    const nonMandatoryFields = [
+        'notes', 'uploadedDoc'
+    ]
+
+    const {inputsStates, setValidators, updateVirtualFormField, fullFormValidation, resetValidators} = useFormManager(fieldnames, nonMandatoryFields)
+
+    useEffect(() => {
+        // help with double useeffect triggering in dev mode
+        resetValidators()
+
+        setValidators([
+            {fieldName : 'amount', validators : [Validators.isNumber]},
+            {fieldName : 'paymentMethod', validators : [Validators.isName]},
+            {fieldName : 'authorizedBy', validators : [Validators.isName]},
+            {fieldName : 'uploadedDoc', validators : [Validators.isName]},
+            {fieldName : 'notes', validators : [Validators.isName]},
+        ])
+    }, [])
 
     function handleChange(event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>){
-        const name = event.currentTarget.name
-        const value = event.currentTarget.value
-        // setInputsValues(values => ({...values, [name]: value}))
-        setInputsValues({...inputsValues, [name] : value})
+        const {name, value} = event.currentTarget
+        updateVirtualFormField(name, value)
     }
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>){
         event.preventDefault()
-        console.log('state : ', inputsValues)
+        fullFormValidation()
+        console.log('state : ', inputsStates)
     }
-    
+        
     return(
     <>
         <Header/>
@@ -26,25 +52,25 @@ function NewRefund(){
                 <div className='duoRow'>
                     <div className='soloRow'>
                         <label htmlFor="amount">Montant du Remboursement</label>
-                        <input name="amount" value={inputsValues?.amount || ''} onChange={handleChange} id="amount" type="text"/>
+                        <input name="amount" value={inputsStates?.amount?.value || ''} onChange={handleChange} id="amount" type="text"/>
                     </div>                
                     <div className='soloRow'>
                         <label htmlFor="paymentMethod">Moyen de Paiement</label>
-                        <input name="paymentMethod" value={inputsValues?.paymentMethod || ''} onChange={handleChange} id="paymentMethod" type="text"/>
+                        <input name="paymentMethod" value={inputsStates?.paymentMethod?.value || ''} onChange={handleChange} id="paymentMethod" type="text"/>
                     </div>
                 </div>
                 <div className='duoRow defaultSpacing'>
                     <div className='soloRow'>
                         <label htmlFor="authorizedBy">Autorisé par</label>
-                        <input name="authorizedBy" value={inputsValues?.authorizedBy || ''} onChange={handleChange} id="authorizedBy" type="text"/>
+                        <input name="authorizedBy" value={inputsStates?.authorizedBy?.value || ''} onChange={handleChange} id="authorizedBy" type="text"/>
                     </div>                
                     <div className='soloRow'>
                         <label htmlFor="uploadedDoc">Ajout d'un Document (RIB / Chèque)</label>
-                        <input name="uploadedDoc" value={inputsValues?.uploadedDoc || ''} onChange={handleChange} id="uploadedDoc" type="text"/>
+                        <input name="uploadedDoc" value={inputsStates?.uploadedDoc?.value || ''} onChange={handleChange} id="uploadedDoc" type="text"/>
                     </div>
                 </div>
                 <label htmlFor="notes" className='defaultSpacing'>Notes</label>
-                <textarea name="notes" value={inputsValues?.notes || ''} onChange={handleChange} id="notes"/>
+                <textarea name="notes" value={inputsStates?.notes?.value || ''} onChange={handleChange} id="notes"/>
 
                 <input id="refundSubmit" type="submit" value="Valider le Remboursement"/>
             </form>

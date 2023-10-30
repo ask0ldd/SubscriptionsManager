@@ -41,21 +41,21 @@ export function useFormManager(fieldsNames : string[], nonMandatoryFields : stri
         realtimeInputValidation(name, value)
     }
 
-    function setInputError(inputName : string, errorStatus : boolean){
+    function setError(inputName : string, errorStatus : boolean){
         setinputsStates(previousState => ({...previousState, [inputName] : {...previousState[inputName], error : errorStatus }}))
     }
 
     function realtimeInputValidation(name : string, value : any) : boolean{
         if(!inputsStates[name].mandatory && inputsStates[name].value == "") {
-            setInputError(name, false)
+            setError(name, false)
             return true
         }
         const validationResult = inputsStates[name].validators.reduce((accumulator, validator) => accumulator + Number(validator(value)), 0)
         if(validationResult < inputsStates[name].validators.length) {
-            setInputError(name, true)
+            setError(name, true)
             return false
         }
-        setInputError(name, false)
+        setError(name, false)
         return true
     }
 
@@ -64,16 +64,16 @@ export function useFormManager(fieldsNames : string[], nonMandatoryFields : stri
         Object.keys(inputsStates).forEach((key) => {
             // if input blank and non mandatory
             if(!inputsStates[key].mandatory && inputsStates[key].value == "") {
-                setInputError(key, false)
+                setError(key, false)
                 return true
             }
             // process all validators for the input
             const validationResult = inputsStates[key].validators.reduce((accumulator, validator) => accumulator + Number(validator(inputsStates[key].value)), 0)
             if(validationResult < inputsStates[key].validators.length) {
-                setInputError(key, true)
+                setError(key, true)
                 errorsKeys.push(key)
             }else{
-                setInputError(key, false)
+                setError(key, false)
             }
         })
         if(errorsKeys.length > 0 ) return false
