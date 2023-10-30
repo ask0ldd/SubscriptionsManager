@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import Header from '../components/Header'
 import '../style/NewRIB.css'
 import { useFormManager } from '../hooks/useFormManager'
@@ -6,17 +7,27 @@ import { useEffect } from 'react'
 
 function NewRIB(){
 
-    // const [inputsValues, setInputsValues] = useState<IState>({})
+    const fieldnames = [
+        'IBAN', 
+        'BIC', 
+        'bank', 
+        'owner', 
+        'scan', 
+    ]
+    
+    const nonMandatoryFields = [
+        'scan', 
+    ]
 
-    const {inputsStates, setValidators, updateVirtualFormField} = useFormManager(fieldnames, nonMandatoryFields)
+    const {inputsStates, setValidators, updateVirtualFormField, fullFormValidation} = useFormManager(fieldnames, nonMandatoryFields)
 
     useEffect(() => {
         setValidators(
             [
                 {fieldName : 'IBAN', validators : [Validators.isNumber]},
                 {fieldName : 'BIC', validators : [Validators.isNumber]},
-                {fieldName : 'bank', validators : [Validators.isNumber]},
-                {fieldName : 'owner', validators : [Validators.isNumber]},
+                {fieldName : 'bank', validators : [Validators.isName]},
+                {fieldName : 'owner', validators : [Validators.isName]},
                 {fieldName : 'scan', validators : [Validators.isNumber]},
             ])
     }, [])
@@ -29,6 +40,7 @@ function NewRIB(){
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>){
         event.preventDefault()
+        fullFormValidation()
         console.log('state : ', inputsStates)
     }
     
@@ -77,15 +89,3 @@ function NewRIB(){
 }
 
 export default NewRIB
-
-const fieldnames = [
-    'IBAN', 
-    'BIC', 
-    'bank', 
-    'owner', 
-    'scan', 
-]
-
-const nonMandatoryFields = [
-    'scan', 
-]

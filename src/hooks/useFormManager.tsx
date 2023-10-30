@@ -11,7 +11,6 @@ export function useFormManager(fieldsNames : string[], nonMandatoryFields : stri
     nonMandatoryFields.forEach(field => { 
         initialInputsState = {...initialInputsState, [field] : {...initialInputsState[field], mandatory : false}}
     })
-    // setValidators(initialInputsState)
 
     const [inputsStates, setinputsStates] = useState<IInputs>(initialInputsState)
 
@@ -23,7 +22,7 @@ export function useFormManager(fieldsNames : string[], nonMandatoryFields : stri
     function setValidators(validationRules : {fieldName : string, validators : validator[]}[]){
         validationRules.forEach(rules => {
             if(rules.validators.length === 1) return setValidator(rules.fieldName, rules.validators[0])
-            rules.validators.forEach((rule, index) => {
+            rules.validators.forEach((_, index) => {
                 setValidator(rules.fieldName, rules.validators[index])
             })
         })
@@ -52,7 +51,28 @@ export function useFormManager(fieldsNames : string[], nonMandatoryFields : stri
         return true
     }
 
-    return {inputsStates, setinputsStates, setValidators, updateVirtualFormField}
+    function fullFormValidation() : boolean{
+        const errorsKeys = []
+        Object.keys(inputsStates).forEach((key) => {
+            // if input blank and non mandatory
+            if(!inputsStates[key].mandatory && inputsStates[key].value == "") {
+                setInputError(key, false)
+                return true
+            }
+            // process all validators for the input
+            const validationResult = inputsStates[key].validators.reduce((accumulator, validator) => accumulator + Number(validator(inputsStates[key].value)), 0)
+            if(validationResult < inputsStates[key].validators.length) {
+                setInputError(key, true)
+                errorsKeys.push(key)
+            }else{
+                setInputError(key, false)
+            }
+        })
+        if(errorsKeys.length > 0 ) return false
+        return true
+    }
+
+    return {inputsStates, setinputsStates, setValidators, updateVirtualFormField, fullFormValidation}
 
 }
 
