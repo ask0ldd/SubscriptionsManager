@@ -25,7 +25,7 @@ function NewRemainder(){
         setValidators([
             {fieldName : 'amountOfWeeks', validators : [Validators.isPositiveNumber]},
             {fieldName : 'authorizedBy', validators : [Validators.isName]},
-            {fieldName : 'notes', validators : [Validators.isName]},
+            {fieldName : 'notes', validators : []},
         ])
     }, [])
 
