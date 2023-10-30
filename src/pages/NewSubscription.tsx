@@ -51,22 +51,22 @@ function NewSubscription(){
 
                 <div className='duoRow'>
                     <div className='soloRow'>
-                        <label htmlFor="fees">Montant</label>
+                        <div className='labelErrorContainer'><label htmlFor="fees">Montant</label>{inputsStates?.fees?.error && <span>Error Message</span>}</div>
                         <input value={inputsStates?.fees.value || ''} onChange={handleChange} name="fees" id="fees" type="text"/>
                     </div>                
                     <div className='soloRow'>
-                        <label htmlFor="sponsor">Parrain</label>
+                        <div className='labelErrorContainer'><label htmlFor="sponsor">Parrain</label>{inputsStates?.sponsor?.error && <span>Error Message</span>}</div>
                         <input value={inputsStates?.sponsor.value || ''} onChange={handleChange} name="sponsor" id="sponsor" type="text"/>
                     </div>
                 </div>
 
                 <div className='duoRow defaultSpacing'>
                     <div className='soloRow'>
-                        <label htmlFor="startingDate">Date de Départ</label>
+                        <div className='labelErrorContainer'><label htmlFor="startingDate">Date de Départ</label>{inputsStates?.startingDate?.error && <span>Error Message</span>}</div>
                         <input value={inputsStates?.startingDate.value || ''} onChange={handleChange} name="startingDate" id="startingDate" type="text"/>
                     </div>                
                     <div className='soloRow'>
-                        <label htmlFor="endDate">Date de Fin</label>
+                        <div className='labelErrorContainer'><label htmlFor="endDate">Date de Fin</label>{inputsStates?.endDate?.error && <span>Error Message</span>}</div>
                         <input value={inputsStates?.endDate.value || ''} onChange={handleChange} name="endDate" id="endDate" type="text"/>
                     </div>
                 </div>
