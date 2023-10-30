@@ -25,7 +25,7 @@ function NewRefund(){
         resetValidators()
 
         setValidators([
-            {fieldName : 'amount', validators : [Validators.isNumber]},
+            {fieldName : 'amount', validators : [Validators.isPositiveNumber]},
             {fieldName : 'paymentMethod', validators : [Validators.isName]},
             {fieldName : 'authorizedBy', validators : [Validators.isName]},
             {fieldName : 'uploadedDoc', validators : [Validators.isName]},
@@ -51,25 +51,25 @@ function NewRefund(){
             <form className="form-refund" onSubmit={handleSubmit}>
                 <div className='duoRow'>
                     <div className='soloRow'>
-                        <label htmlFor="amount">Montant du Remboursement</label>
+                        <div className='labelErrorContainer'><label htmlFor="amount">Montant du Remboursement</label>{inputsStates?.amount?.error && <span>Error Message</span>}</div>
                         <input name="amount" value={inputsStates?.amount?.value || ''} onChange={handleChange} id="amount" type="text"/>
                     </div>                
                     <div className='soloRow'>
-                        <label htmlFor="paymentMethod">Moyen de Paiement</label>
+                        <div className='labelErrorContainer'><label htmlFor="paymentMethod">Moyen de Paiement</label>{inputsStates?.paymentMethod?.error && <span>Error Message</span>}</div>
                         <input name="paymentMethod" value={inputsStates?.paymentMethod?.value || ''} onChange={handleChange} id="paymentMethod" type="text"/>
                     </div>
                 </div>
                 <div className='duoRow defaultSpacing'>
                     <div className='soloRow'>
-                        <label htmlFor="authorizedBy">Autorisé par</label>
+                        <div className='labelErrorContainer'><label htmlFor="authorizedBy">Autorisé par</label>{inputsStates?.authorizedBy?.error && <span>Error Message</span>}</div>
                         <input name="authorizedBy" value={inputsStates?.authorizedBy?.value || ''} onChange={handleChange} id="authorizedBy" type="text"/>
                     </div>                
                     <div className='soloRow'>
-                        <label htmlFor="uploadedDoc">Ajout d'un Document (RIB / Chèque)</label>
+                        <div className='labelErrorContainer'><label htmlFor="uploadedDoc">Ajout d'un Document (RIB / Chèque)</label>{inputsStates?.uploadedDoc?.error && <span>Error Message</span>}</div>
                         <input name="uploadedDoc" value={inputsStates?.uploadedDoc?.value || ''} onChange={handleChange} id="uploadedDoc" type="text"/>
                     </div>
                 </div>
-                <label htmlFor="notes" className='defaultSpacing'>Notes</label>
+                <div className='labelErrorContainer'><label htmlFor="notes" className='defaultSpacing'>Notes</label>{inputsStates?.notes?.error && <span>Error Message</span>}</div>
                 <textarea name="notes" value={inputsStates?.notes?.value || ''} onChange={handleChange} id="notes"/>
 
                 <input id="refundSubmit" type="submit" value="Valider le Remboursement"/>

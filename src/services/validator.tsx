@@ -16,6 +16,10 @@ export class Validators {
         return !Number.isNaN(Number.parseInt(inputValue))
     }
 
+    static isPositiveNumber(inputValue : string) : boolean{
+        return !Number.isNaN(Number.parseInt(inputValue)) && Number.parseInt(inputValue) > 0
+    }
+
     static isDate(inputValue : string) : boolean{
         const trimmedValue = inputValue.trim()
         const dateRegexDash = new RegExp("^[0-9]{4}-[0-9]{1,2}-[0-9]{1,2}$")
