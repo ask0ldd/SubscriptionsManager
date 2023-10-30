@@ -1,21 +1,43 @@
-import { useState } from 'react'
+import { useEffect } from 'react'
 import Header from '../components/Header'
 import '../style/NewRemainder.css'
+import { useFormManager } from '../hooks/useFormManager'
+import { Validators } from '../services/validator'
 
 function NewRemainder(){
 
-    const [inputsValues, setInputsValues] = useState<IState>({})
+    const fieldnames = [
+        'amountOfWeeks', 
+        'authorizedBy', 
+        'notes', 
+    ]
+    
+    const nonMandatoryFields = [
+        'notes',
+    ]
+
+    const {inputsStates, setValidators, updateVirtualFormField, fullFormValidation, resetValidators} = useFormManager(fieldnames, nonMandatoryFields)
+
+    useEffect(() => {
+        // help with double useeffect triggering in dev mode
+        resetValidators()
+
+        setValidators([
+            {fieldName : 'amountOfWeeks', validators : [Validators.isPositiveNumber]},
+            {fieldName : 'authorizedBy', validators : [Validators.isName]},
+            {fieldName : 'notes', validators : [Validators.isName]},
+        ])
+    }, [])
 
     function handleChange(event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>){
-        const name = event.currentTarget.name
-        const value = event.currentTarget.value
-        // setInputsValues(values => ({...values, [name]: value}))
-        setInputsValues({...inputsValues, [name] : value})
+        const {name, value} = event.currentTarget
+        updateVirtualFormField(name, value)
     }
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>){
         event.preventDefault()
-        console.log('state : ', inputsValues)
+        fullFormValidation()
+        console.log('state : ', inputsStates)
     }
     
     return (
@@ -25,17 +47,17 @@ function NewRemainder(){
             <form className="form-newRemainder" onSubmit={handleSubmit}>
                 <div className='duoRow'>
                     <div className='soloRow'>
-                        <label htmlFor="amountOfWeeks">Amount of Weeks</label>
-                        <input name="amountOfWeeks" value={inputsValues?.amountOfWeeks || ''} onChange={handleChange} id="amountOfWeeks" type="text"/>
+                        <div className='labelErrorContainer'><label htmlFor="amountOfWeeks">Amount of Weeks</label>{inputsStates?.amountOfWeeks?.error && <span>Error Message</span>}</div>
+                        <input name="amountOfWeeks" value={inputsStates?.amountOfWeeks.value || ''} onChange={handleChange} id="amountOfWeeks" type="text"/>
                     </div>
                     <div className='soloRow'>
-                        <label htmlFor="validatedBy">Validated by</label>
-                        <input name="validatedBy" value={inputsValues?.validatedBy || ''} onChange={handleChange} id="validatedBy" type="text"/>
+                        <div className='labelErrorContainer'><label htmlFor="authorizedBy">Validated by</label>{inputsStates?.authorizedBy?.error && <span>Error Message</span>}</div>
+                        <input name="authorizedBy" value={inputsStates?.authorizedBy.value || ''} onChange={handleChange} id="authorizedBy" type="text"/>
                     </div>
                 </div>
 
-                <label htmlFor="notes" className='defaultSpacing'>Notes</label>
-                <textarea name="notes" value={inputsValues?.notes || ''} onChange={handleChange} id="notes"/>
+                <div className='labelErrorContainer'><label htmlFor="notes" className='defaultSpacing'>Notes</label>{inputsStates?.notes?.error && <span>Error Message</span>}</div>
+                <textarea name="notes" value={inputsStates?.notes.value || ''} onChange={handleChange} id="notes"/>
 
                 <input id="remainderSubmit" type="submit" value="Assign some"/>
 
@@ -46,9 +68,3 @@ function NewRemainder(){
 }
 
 export default NewRemainder
-
-interface IState{
-    amountOfWeeks?: string
-    validatedBy?: string
-    notes?: string
-}

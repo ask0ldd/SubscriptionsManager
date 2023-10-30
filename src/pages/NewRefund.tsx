@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect } from 'react'
 import Header from '../components/Header'
 import '../style/NewRefund.css'
 import { Validators } from '../services/validator'
@@ -80,11 +81,3 @@ function NewRefund(){
 }
 
 export default NewRefund
-
-interface IState{
-    amount?: string
-    paymentMethod?: string
-    authorizedBy?: string
-    uploadedDoc?: string
-    notes?: string
-}
