@@ -54,22 +54,22 @@ function NewAnomaly(){
             <form className='form-anomaly' onSubmit={handleSubmit}>
 
                 <div className='soloRow'>
-                    <label htmlFor='title'>Title</label>
+                    <div className='labelErrorContainer'><label htmlFor='title'>Title</label>{inputsStates?.title?.error && <span>Error Message</span>}</div>
                     <input name="title" value={inputsStates?.title?.value || ''} onChange={handleChange} id="title" type="text"/>
                 </div>
 
                 <div className='duoRow defaultSpacing'>
                     <div className='soloRow'>
-                        <label htmlFor="activeFrom">Active From</label>
+                        <div className='labelErrorContainer'><label htmlFor="activeFrom">Active From</label>{inputsStates?.activeFrom?.error && <span>Error Message</span>}</div>
                         <input name="activeFrom" value={inputsStates?.activeFrom?.value || ''} onChange={handleChange} onClick={clearInputPlaceHolder} id="activeFrom" type="text" placeholder="xx/xx/xxxx"/>
                     </div>                
                     <div className='soloRow'>
-                        <label htmlFor="activeUntil">To</label>
+                        <div className='labelErrorContainer'><label htmlFor="activeUntil">To</label>{inputsStates?.activeUntil?.error && <span>Error Message</span>}</div>
                         <input name="activeUntil" value={inputsStates?.activeUntil?.value || ''} onChange={handleChange} onClick={clearInputPlaceHolder} id="activeUntil" type="text" placeholder="xx/xx/xxxx"/>
                     </div>
                 </div>
 
-                <label htmlFor="notes" className='defaultSpacing'>Notes</label>
+                <div className='labelErrorContainer'><label htmlFor="notes" className='defaultSpacing'>Notes</label>{inputsStates?.notes?.error && <span>Error Message</span>}</div>
                 <textarea name="notes" value={inputsStates?.notes?.value || ''} onChange={handleChange} id="notes"/>
 
                 <input id="anomalySubmit" type="submit" value="Set Anomaly"/>

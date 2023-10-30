@@ -18,9 +18,10 @@ export class Validators {
 
     static isDate(inputValue : string) : boolean{
         const trimmedValue = inputValue.trim()
-        const dateRegex = new RegExp("^[0-9]{4}-[0-9]{1,2}-[0-9]{1,2}$")
+        const dateRegexDash = new RegExp("^[0-9]{4}-[0-9]{1,2}-[0-9]{1,2}$")
+        const dateRegexSlash = new RegExp("^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4}$")
         const isPastDate = (Date.parse(trimmedValue) - Date.now()) < 0
-        return dateRegex.test(trimmedValue) && isPastDate
+        return (dateRegexDash.test(trimmedValue) || dateRegexSlash.test(trimmedValue)) && isPastDate
     }
 
     static isEmail(inputValue : string) : boolean{
