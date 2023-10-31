@@ -46,11 +46,13 @@ export function useFormManager(fieldsNames : string[], nonMandatoryFields : stri
     }
 
     function realtimeInputValidation(name : string, value : any) : boolean{
+        // if the field is empty and non mandatory => validate
         if(!inputsStates[name].mandatory && inputsStates[name].value == "") {
             setError(name, false)
             return true
         }
 
+        // if the field is empty and mandatory => setError
         if(inputsStates[name].mandatory && inputsStates[name].value == "") {
             setError(name, true)
             return false
@@ -74,10 +76,12 @@ export function useFormManager(fieldsNames : string[], nonMandatoryFields : stri
                 return true
             }
 
+            // if the field is empty and mandatory => setError
             if(inputsStates[key].mandatory && inputsStates[key].value == "") {
                 setError(key, true)
                 return false
             }
+            
             // process all validators for the input
             const validationResult = inputsStates[key].validators.reduce((accumulator, validator) => accumulator + Number(validator(inputsStates[key].value)), 0)
             if(validationResult < inputsStates[key].validators.length) {

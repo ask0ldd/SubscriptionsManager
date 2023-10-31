@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import Header from '../components/Header'
 import '../style/MemberForm.css'
 import { Validators } from '../services/validator'
-import { IInputs, useFormManager } from '../hooks/useFormManager'
+import { useFormManager } from '../hooks/useFormManager'
 
 function MemberForm(){
 
