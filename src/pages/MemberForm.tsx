@@ -1,9 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Header from '../components/Header'
 import '../style/MemberForm.css'
 import { Validators } from '../services/validator'
-import { IInputs } from '../hooks/useFormManager'
+import { IInputs, useFormManager } from '../hooks/useFormManager'
 
 function MemberForm(){
 
@@ -25,7 +26,8 @@ function MemberForm(){
     ]
     
     const nonMandatoryFields = [
-        'scan', 
+        'address2',
+        'phone'
     ]
 
     const {inputsStates, setValidators, updateVirtualFormField, fullFormValidation, resetValidators} = useFormManager(fieldnames, nonMandatoryFields)
@@ -35,11 +37,20 @@ function MemberForm(){
         resetValidators()
 
         setValidators([
-            {fieldName : 'IBAN', validators : [Validators.isNumber, Validators.isBetween_0_and_99]},
-            {fieldName : 'BIC', validators : [Validators.isNumber]},
-            {fieldName : 'bank', validators : [Validators.isName]},
-            {fieldName : 'owner', validators : [Validators.isName]},
-            {fieldName : 'scan', validators : [Validators.isNumber]},
+            {fieldName : 'lastname', validators : [Validators.isNumber, Validators.isBetween_0_and_99]},
+            {fieldName : 'firstname', validators : [Validators.isName]},
+            {fieldName : 'birthdate', validators : [Validators.isDate]},
+            {fieldName : 'gender', validators : [Validators.isGender]},
+            {fieldName : 'address1', validators : []},
+            {fieldName : 'address2', validators : []},
+            {fieldName : 'city', validators : [Validators.isName]},
+            {fieldName : 'postalcode', validators : [Validators.isPositiveNumber]},
+            {fieldName : 'phone', validators : [Validators.isPositiveNumber]},
+            {fieldName : 'email', validators : [Validators.isEmail]},
+            {fieldName : 'mobile', validators : [Validators.isPositiveNumber]},
+            {fieldName : 'emergencyContactLastname', validators : [Validators.isName]},
+            {fieldName : 'emergencyContactFirstname', validators : [Validators.isName]},
+            {fieldName : 'emergencyContactMobile',validators : [Validators.isPositiveNumber]},
         ])
     }, [])
 
