@@ -2,7 +2,7 @@
 import { useEffect } from 'react'
 import Header from '../components/Header'
 import { useFormManager } from '../hooks/useFormManager'
-import '../style/RIBForm.css'
+import '../style/SubscriptionForm.css'
 import { Validators } from '../services/validator'
 
 function RIBForm(){

@@ -1,11 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import Header from '../components/Header'
-import '../style/NewRIB.css'
+import '../style/RIBForm.css'
 import { useFormManager } from '../hooks/useFormManager'
 import { Validators } from '../services/validator'
 import { useEffect } from 'react'
 
-function NewRIB(){
+function RIBForm(){
 
     const fieldnames = [
         'IBAN', 
@@ -89,4 +89,4 @@ function NewRIB(){
     )
 }
 
-export default NewRIB
+export default RIBForm

@@ -1,12 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Home from '../pages/Home'
-import NewMember from '../pages/NewMember'
-import NewPayment from '../pages/NewPayment'
-import NewRemainder from '../pages/NewRemainder'
-import NewAnomaly from '../pages/NewAnomaly'
-import NewRefund from '../pages/NewRefund'
-import NewRIB from '../pages/NewRIB'
-import NewSubscription from '../pages/NewSubscription'
+import MemberForm from '../pages/MemberForm'
+import PaymentForm from '../pages/PaymentForm'
+import RemainderForm from '../pages/RemainderForm'
+import AnomalyForm from '../pages/AnomalyForm'
+import RefundForm from '../pages/RefundForm'
+import RIBForm from '../pages/RIBForm'
+import SubscriptionForm from '../pages/SubscriptionForm'
 
 function CustomRouter() {
     /*<Router basename="/P13-UserInterface-API/ABFront/"> needs to add basename into vite config*/
@@ -14,13 +14,13 @@ function CustomRouter() {
         <Router>
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/newmember" element={<NewMember />} />
-                <Route path="/newpayment" element={<NewPayment />} />
-                <Route path="/newremainder" element={<NewRemainder />} />
-                <Route path="/newanomaly" element={<NewAnomaly/>} />
-                <Route path="/newrefund" element={<NewRefund/>} />
-                <Route path="/newrib" element={<NewRIB/>} />
-                <Route path="/newsubscription" element={<NewSubscription/>} />
+                <Route path="/newmember" element={<MemberForm />} />
+                <Route path="/newpayment" element={<PaymentForm />} />
+                <Route path="/newremainder" element={<RemainderForm />} />
+                <Route path="/newanomaly" element={<AnomalyForm/>} />
+                <Route path="/newrefund" element={<RefundForm/>} />
+                <Route path="/newrib" element={<RIBForm/>} />
+                <Route path="/newsubscription" element={<SubscriptionForm/>} />
             </Routes>
         </Router>
     )

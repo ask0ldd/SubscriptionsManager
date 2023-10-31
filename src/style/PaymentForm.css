@@ -19,19 +19,19 @@ label.defaultSpacing,
   margin-top: 1.5rem;
 }
 
-.newPaiement-Form .trioletContainer {
+.form-newPayment .trioletContainer {
   display: flex;
   column-gap: 3rem;
   width: 100%;
 }
 
-.newPaiement-Form .triolet {
+.form-newPayment .triolet {
   display: flex;
   flex-direction: column;
   flex: 1 1 30%;
 }
 
-.newPaiement-Form textarea {
+.form-newPayment textarea {
   width: 100%;
   height: 20rem;
   resize: none;
@@ -44,7 +44,7 @@ label.defaultSpacing,
   margin-top: 0.325rem;
 }
 
-.newPaiement-Form input[type="submit"] {
+.form-newPayment input[type="submit"] {
   align-self: center;
   justify-self: center;
   width: 100%;
