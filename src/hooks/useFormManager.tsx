@@ -50,6 +50,12 @@ export function useFormManager(fieldsNames : string[], nonMandatoryFields : stri
             setError(name, false)
             return true
         }
+
+        if(inputsStates[name].mandatory && inputsStates[name].value == "") {
+            setError(name, true)
+            return false
+        }
+
         const validationResult = inputsStates[name].validators.reduce((accumulator, validator) => accumulator + Number(validator(value)), 0)
         if(validationResult < inputsStates[name].validators.length) {
             setError(name, true)
@@ -66,6 +72,11 @@ export function useFormManager(fieldsNames : string[], nonMandatoryFields : stri
             if(!inputsStates[key].mandatory && inputsStates[key].value == "") {
                 setError(key, false)
                 return true
+            }
+
+            if(inputsStates[key].mandatory && inputsStates[key].value == "") {
+                setError(key, true)
+                return false
             }
             // process all validators for the input
             const validationResult = inputsStates[key].validators.reduce((accumulator, validator) => accumulator + Number(validator(inputsStates[key].value)), 0)
