@@ -19,14 +19,14 @@ function RIBForm(){
         'scan', 
     ]
 
-    const {inputsStates, virtualForm} = useFormManager(fieldnames, nonMandatoryFields)
+    const {virtualForm} = useFormManager(fieldnames, nonMandatoryFields)
 
     useEffect(() => {
         // help with double useeffect triggering in dev mode
         virtualForm.resetValidators()
 
         virtualForm.setValidators([
-            {fieldName : 'IBAN', validators : [Validators.isNumber, Validators.isBetween_0_and_99]},
+            {fieldName : 'IBAN', validators : [Validators.isNumber]},
             {fieldName : 'BIC', validators : [Validators.isNumber]},
             {fieldName : 'bank', validators : [Validators.isName]},
             {fieldName : 'owner', validators : [Validators.isName]},
@@ -42,7 +42,7 @@ function RIBForm(){
     function handleSubmit(event: React.FormEvent<HTMLFormElement>){
         event.preventDefault()
         virtualForm.fullFormValidation()
-        console.log('state : ', inputsStates)
+        // console.log('state : ', inputsStates)
     }
     
     return(
