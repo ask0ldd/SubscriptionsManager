@@ -2,10 +2,10 @@
 import { useEffect } from 'react'
 import Header from '../components/Header'
 import { useFormManager } from '../hooks/useFormManager'
-import '../style/NewSubscription.css'
+import '../style/RIBForm.css'
 import { Validators } from '../services/validator'
 
-function NewSubscription(){
+function RIBForm(){
 
     const fieldnames = [
         'fees', 
@@ -78,4 +78,4 @@ function NewSubscription(){
     )
 }
 
-export default NewSubscription
+export default RIBForm

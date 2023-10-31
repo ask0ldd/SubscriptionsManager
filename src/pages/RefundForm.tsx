@@ -1,11 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from 'react'
 import Header from '../components/Header'
-import '../style/NewRefund.css'
+import '../style/RefundForm.css'
 import { Validators } from '../services/validator'
 import { useFormManager } from '../hooks/useFormManager'
 
-function NewRefund(){
+function RefundForm(){
 
     const fieldnames = [
         'amount', 
@@ -80,4 +80,4 @@ function NewRefund(){
     )
 }
 
-export default NewRefund
+export default RefundForm

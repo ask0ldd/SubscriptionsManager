@@ -1,11 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from 'react'
 import Header from '../components/Header'
-import '../style/NewAnomaly.css'
+import '../style/AnomalyForm.css'
 import { useFormManager } from '../hooks/useFormManager'
 import { Validators } from '../services/validator'
 
-function NewAnomaly(){
+function AnomalyForm(){
 
     const fieldnames = [
         'title', 
@@ -79,4 +79,4 @@ function NewAnomaly(){
     )
 }
 
-export default NewAnomaly
+export default AnomalyForm

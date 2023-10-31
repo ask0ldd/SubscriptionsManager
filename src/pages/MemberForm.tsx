@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from 'react'
 import Header from '../components/Header'
-import '../style/NewMember.css'
+import '../style/MemberForm.css'
 import { Validators } from '../services/validator'
 import { IInputs } from '../hooks/useFormManager'
 
-function NewMember(){
+function MemberForm(){
 
     // generate the initial state out of the fields names array
     let initialInputsState = fieldnames.reduce((acc : IInputs, value : string) => ({...acc, [value] : {...stateBase, validators : []}}), {})
@@ -32,12 +32,6 @@ function NewMember(){
     function setInputError(inputName : string, errorStatus : boolean){
         setinputsStates(previousState => ({...previousState, [inputName] : {...previousState[inputName], error : errorStatus }}))
     }
-
-    /*function resetInputsErrors(){
-        let updatedInputStatesCopy = {}
-        Object.keys(inputsStates).forEach((key) => updatedInputStatesCopy = {...updatedInputStatesCopy, [key] : {...inputsStates[key], error : false }})
-        setinputsStates(updatedInputStatesCopy)
-    }*/
 
     function fullFormValidation(inputsStates : IInputs) : boolean{
         // resetInputsErrors()
@@ -173,7 +167,7 @@ function NewMember(){
     )
 }
 
-export default NewMember
+export default MemberForm
 
 const stateBase = {value : '', error : false, untouched : true, mandatory : true}
 

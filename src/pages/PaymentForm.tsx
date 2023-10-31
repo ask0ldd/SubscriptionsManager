@@ -1,7 +1,7 @@
 import Header from '../components/Header'
-import '../style/NewPayment.css'
+import '../style/PaymentForm.css'
 
-function NewPayment(){
+function PaymentForm(){
     return (
     <>
         <Header/>
@@ -48,4 +48,4 @@ function NewPayment(){
     )
 }
 
-export default NewPayment
+export default PaymentForm

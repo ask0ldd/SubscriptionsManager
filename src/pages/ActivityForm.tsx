@@ -1,6 +1,6 @@
-import '../style/NewActivity.css'
+import '../style/ActivityForm.css'
 
-function NewActivity(){
+function ActivityForm(){
  return(
     <main>
         
@@ -14,4 +14,4 @@ renouvellement : x months
 tarifs : x euros
 */
 
-export default NewActivity
+export default ActivityForm

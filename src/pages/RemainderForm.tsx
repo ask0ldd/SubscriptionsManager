@@ -1,11 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from 'react'
 import Header from '../components/Header'
-import '../style/NewRemainder.css'
+import '../style/RemainderForm.css'
 import { useFormManager } from '../hooks/useFormManager'
 import { Validators } from '../services/validator'
 
-function NewRemainder(){
+function RemainderForm(){
 
     const fieldnames = [
         'amountOfWeeks', 
@@ -68,4 +68,4 @@ function NewRemainder(){
     )
 }
 
-export default NewRemainder
+export default RemainderForm
