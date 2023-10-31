@@ -7,66 +7,51 @@ import { IInputs } from '../hooks/useFormManager'
 
 function MemberForm(){
 
-    // generate the initial state out of the fields names array
-    let initialInputsState = fieldnames.reduce((acc : IInputs, value : string) => ({...acc, [value] : {...stateBase, validators : []}}), {})
-    // set the listed fields as non mandatory
-    nonMandatoryFields.forEach(field => { 
-        initialInputsState = {...initialInputsState, [field] : {...initialInputsState[field], mandatory : false}}
-    })
-    setValidators(initialInputsState)
+    const fieldnames = [
+        'lastname', 
+        'firstname', 
+        'birthdate', 
+        'gender', 
+        'address1', 
+        'address2', 
+        'city', 
+        'postalcode', 
+        'phone', 
+        'email', 
+        'mobile', 
+        'emergencyContactLastname', 
+        'emergencyContactFirstname', 
+        'emergencyContactMobile',
+    ]
+    
+    const nonMandatoryFields = [
+        'scan', 
+    ]
 
-    const [inputsStates, setinputsStates] = useState<IInputs>(initialInputsState)
+    const {inputsStates, setValidators, updateVirtualFormField, fullFormValidation, resetValidators} = useFormManager(fieldnames, nonMandatoryFields)
 
-    function handleChange(event: React.FormEvent<HTMLInputElement>){
+    useEffect(() => {
+        // help with double useeffect triggering in dev mode
+        resetValidators()
+
+        setValidators([
+            {fieldName : 'IBAN', validators : [Validators.isNumber, Validators.isBetween_0_and_99]},
+            {fieldName : 'BIC', validators : [Validators.isNumber]},
+            {fieldName : 'bank', validators : [Validators.isName]},
+            {fieldName : 'owner', validators : [Validators.isName]},
+            {fieldName : 'scan', validators : [Validators.isNumber]},
+        ])
+    }, [])
+
+    function handleChange(event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>){
         const {name, value} = event.currentTarget
-        setinputsStates(previousState => ({...previousState, [name] : {...previousState[name], 'value' : value, untouched : false }}))
-        realtimeInputValidation(name, value)
+        updateVirtualFormField(name, value)
     }
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>){
         event.preventDefault()
-        console.log(inputsStates)
-        if(!fullFormValidation(inputsStates)) console.error('invalid form')
-    }
-
-    function setInputError(inputName : string, errorStatus : boolean){
-        setinputsStates(previousState => ({...previousState, [inputName] : {...previousState[inputName], error : errorStatus }}))
-    }
-
-    function fullFormValidation(inputsStates : IInputs) : boolean{
-        // resetInputsErrors()
-        const errorsKeys = []
-        Object.keys(inputsStates).forEach((key) => {
-            // if input blank and non mandatory
-            if(!inputsStates[key].mandatory && inputsStates[key].value == "") {
-                setInputError(key, false)
-                return true
-            }
-            // process all validators for the input
-            const validationResult = inputsStates[key].validators.reduce((accumulator, validator) => accumulator + Number(validator(inputsStates[key].value)), 0)
-            if(validationResult < inputsStates[key].validators.length) {
-                setInputError(key, true)
-                errorsKeys.push(key)
-            }else{
-                setInputError(key, false)
-            }
-        })
-        if(errorsKeys.length > 0 ) return false
-        return true
-    }
-
-    function realtimeInputValidation(name : string, value : any) : boolean{
-        if(!inputsStates[name].mandatory && inputsStates[name].value == "") {
-            setInputError(name, false)
-            return true
-        }
-        const validationResult = inputsStates[name].validators.reduce((accumulator, validator) => accumulator + Number(validator(value)), 0)
-        if(validationResult < inputsStates[name].validators.length) {
-            setInputError(name, true)
-            return false
-        }
-        setInputError(name, false)
-        return true
+        fullFormValidation()
+        console.log('state : ', inputsStates)
     }
 
     return (
@@ -169,6 +154,8 @@ function MemberForm(){
 
 export default MemberForm
 
+/*
+
 const stateBase = {value : '', error : false, untouched : true, mandatory : true}
 
 const fieldnames = [
@@ -210,3 +197,67 @@ function setValidators(initialInputsState : IInputs){
     initialInputsState.emergencyContactFirstname.validators.push(Validators.isName)
     initialInputsState.emergencyContactMobile.validators.push(Validators.isNumber)
 }
+
+// generate the initial state out of the fields names array
+    let initialInputsState = fieldnames.reduce((acc : IInputs, value : string) => ({...acc, [value] : {...stateBase, validators : []}}), {})
+    // set the listed fields as non mandatory
+    nonMandatoryFields.forEach(field => { 
+        initialInputsState = {...initialInputsState, [field] : {...initialInputsState[field], mandatory : false}}
+    })
+    setValidators(initialInputsState)
+
+    const [inputsStates, setinputsStates] = useState<IInputs>(initialInputsState)
+
+    function handleChange(event: React.FormEvent<HTMLInputElement>){
+        const {name, value} = event.currentTarget
+        setinputsStates(previousState => ({...previousState, [name] : {...previousState[name], 'value' : value, untouched : false }}))
+        realtimeInputValidation(name, value)
+    }
+
+    function handleSubmit(event: React.FormEvent<HTMLFormElement>){
+        event.preventDefault()
+        console.log(inputsStates)
+        if(!fullFormValidation(inputsStates)) console.error('invalid form')
+    }
+
+    function setInputError(inputName : string, errorStatus : boolean){
+        setinputsStates(previousState => ({...previousState, [inputName] : {...previousState[inputName], error : errorStatus }}))
+    }
+
+    function fullFormValidation(inputsStates : IInputs) : boolean{
+        // resetInputsErrors()
+        const errorsKeys = []
+        Object.keys(inputsStates).forEach((key) => {
+            // if input blank and non mandatory
+            if(!inputsStates[key].mandatory && inputsStates[key].value == "") {
+                setInputError(key, false)
+                return true
+            }
+            // process all validators for the input
+            const validationResult = inputsStates[key].validators.reduce((accumulator, validator) => accumulator + Number(validator(inputsStates[key].value)), 0)
+            if(validationResult < inputsStates[key].validators.length) {
+                setInputError(key, true)
+                errorsKeys.push(key)
+            }else{
+                setInputError(key, false)
+            }
+        })
+        if(errorsKeys.length > 0 ) return false
+        return true
+    }
+
+    function realtimeInputValidation(name : string, value : any) : boolean{
+        if(!inputsStates[name].mandatory && inputsStates[name].value == "") {
+            setInputError(name, false)
+            return true
+        }
+        const validationResult = inputsStates[name].validators.reduce((accumulator, validator) => accumulator + Number(validator(value)), 0)
+        if(validationResult < inputsStates[name].validators.length) {
+            setInputError(name, true)
+            return false
+        }
+        setInputError(name, false)
+        return true
+    }
+
+*/
