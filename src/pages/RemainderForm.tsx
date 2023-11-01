@@ -17,7 +17,7 @@ function RemainderForm(){
         'notes',
     ]
 
-    const {virtualForm} = useFormManager(fieldnames, nonMandatoryFields)
+    const virtualForm = useFormManager(fieldnames, nonMandatoryFields)
 
     useEffect(() => {
         // help with double useeffect triggering in dev mode
@@ -48,16 +48,16 @@ function RemainderForm(){
             <form className="form-newRemainder" onSubmit={handleSubmit}>
                 <div className='duoRow'>
                     <div className='soloRow'>
-                        <div className='labelErrorContainer'><label htmlFor="amountOfWeeks">Amount of Weeks</label>{virtualForm.state.amountOfWeeks?.error && <span>Error Message</span>}</div>
+                        <div className='labelErrorContainer'><label htmlFor="amountOfWeeks">Amount of Weeks</label>{virtualForm.state.amountOfWeeks.error && <span>Error Message</span>}</div>
                         <input name="amountOfWeeks" value={virtualForm.state.amountOfWeeks.value || ''} onChange={handleChange} id="amountOfWeeks" type="text"/>
                     </div>
                     <div className='soloRow'>
-                        <div className='labelErrorContainer'><label htmlFor="authorizedBy">Validated by</label>{virtualForm.state.authorizedBy?.error && <span>Error Message</span>}</div>
+                        <div className='labelErrorContainer'><label htmlFor="authorizedBy">Validated by</label>{virtualForm.state.authorizedBy.error && <span>Error Message</span>}</div>
                         <input name="authorizedBy" value={virtualForm.state.authorizedBy.value || ''} onChange={handleChange} id="authorizedBy" type="text"/>
                     </div>
                 </div>
 
-                <div className='labelErrorContainer'><label htmlFor="notes" className='defaultSpacing'>Notes</label>{virtualForm.state.notes?.error && <span>Error Message</span>}</div>
+                <div className='labelErrorContainer'><label htmlFor="notes" className='defaultSpacing'>Notes</label>{virtualForm.state.notes.error && <span>Error Message</span>}</div>
                 <textarea name="notes" value={virtualForm.state.notes.value || ''} onChange={handleChange} id="notes"/>
 
                 <input id="remainderSubmit" type="submit" value="Assign some"/>

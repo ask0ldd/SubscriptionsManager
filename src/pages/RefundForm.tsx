@@ -19,7 +19,7 @@ function RefundForm(){
         'notes', 'uploadedDoc'
     ]
 
-    const {virtualForm} = useFormManager(fieldnames, nonMandatoryFields)
+    const virtualForm = useFormManager(fieldnames, nonMandatoryFields)
 
     useEffect(() => {
         // help with double useeffect triggering in dev mode

@@ -111,7 +111,7 @@ export function useFormManager(fieldsNames : string[], nonMandatoryFields : stri
         },
     }
 
-    return {virtualForm}
+    return virtualForm
 
 }
 
