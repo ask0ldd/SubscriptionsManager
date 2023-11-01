@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react"
 
@@ -40,9 +41,9 @@ export function useFormManager(fieldsNames : string[], nonMandatoryFields : stri
             })
         },
 
-        updateVirtualFormField(name : string, value : any){
+        updateVirtualFormField(name : string, value : any, withSubsequentValidation = true){
             this.setinputsStates((previousState : IInputs) => ({...previousState, [name] : {...previousState[name], 'value' : value, untouched : false }}))
-            this.realtimeInputValidation(name, value)
+            if(withSubsequentValidation) this.realtimeInputValidation(name, value)
         },
 
         setError(inputName : string, errorStatus : boolean){
@@ -75,7 +76,7 @@ export function useFormManager(fieldsNames : string[], nonMandatoryFields : stri
             // check if fieldname exists
             fieldsnValues.forEach((fieldnValue) => {
                 const fieldnValueKey = Object.keys(fieldnValue)[0]
-                if(inputsStates[fieldnValueKey]) this.updateVirtualFormField(fieldnValueKey, fieldnValue[fieldnValueKey])
+                if(inputsStates[fieldnValueKey]) this.updateVirtualFormField(fieldnValueKey, fieldnValue[fieldnValueKey], false)
             })
             /*setTimeout(() => console.log(inputsStates), 1000)
             console.log(inputsStates)*/

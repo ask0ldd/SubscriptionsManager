@@ -23,7 +23,7 @@ function RIBForm(){
 
     useEffect(() => {
 
-        virtualForm.setInitValues([{'IBAN': '000000'},])
+        virtualForm.setInitValues([{IBAN: '1568'},{BIC : '123'}])
 
         // help with double useeffect triggering in dev mode
         virtualForm.resetValidators()
