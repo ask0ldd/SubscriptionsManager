@@ -25,6 +25,7 @@ export class Validators {
         const trimmedValue = inputValue.trim()
         const dateRegexDash = new RegExp("^[0-9]{4}-[0-9]{1,2}-[0-9]{1,2}$")
         const dateRegexSlash = new RegExp("^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4}$")
+        //!! ispastdate should be adapted depeding on the date format dash / slash
         const isPastDate = (Date.parse(trimmedValue) - Date.now()) < 0
         return (dateRegexDash.test(trimmedValue) || dateRegexSlash.test(trimmedValue)) && isPastDate
     }

@@ -109,6 +109,14 @@ export function useFormManager(fieldsNames : string[], nonMandatoryFields : stri
             if(errorsKeys.length > 0 ) return false
             return true
         },
+
+        getFormDatas() {
+            let formDatas = {}
+            Object.keys(inputsStates).forEach((key) => {
+                formDatas = {...formDatas, [key] : inputsStates[key as keyof typeof inputsStates].value}
+            })
+            return formDatas
+        },
     }
 
     return virtualForm

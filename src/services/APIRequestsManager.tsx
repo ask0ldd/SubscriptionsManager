@@ -6,7 +6,11 @@ export class APIRequestsManager {
 
     static getMember(_memberId ?: number) : Promise<IMember>{
         return new Promise(resolve => {
-            setTimeout(() => {resolve(mockMember)}, 1000)
+            setTimeout(() => {resolve(mockMember)}, 300)
         })
+    }
+
+    static newMember(member : IMember){
+        console.log(member)
     }
 }
