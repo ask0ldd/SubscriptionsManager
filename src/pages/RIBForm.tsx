@@ -19,7 +19,7 @@ function RIBForm(){
         'scan', 
     ]
 
-    const {virtualForm} = useFormManager(fieldnames, nonMandatoryFields)
+    const virtualForm = useFormManager(fieldnames, nonMandatoryFields)
 
     useEffect(() => {
 
@@ -56,8 +56,8 @@ function RIBForm(){
 
                 <div className='duoRow'>
                     <div className='soloRow'>
-                        <div className='labelErrorContainer'><label htmlFor="IBAN">IBAN</label>{virtualForm.state.IBAN.error && <span>Error Message</span>}</div>
-                        <input name="IBAN" value={virtualForm.state.IBAN.value || ''} onChange={handleChange} id="IBAN" type="text"/>
+                        <div className='labelErrorContainer'><label htmlFor="IBAN">IBAN</label>{virtualForm.state?.IBAN?.error && <span>Error Message</span>}</div>
+                        <input name="IBAN" value={virtualForm.state?.IBAN?.value || ''} onChange={handleChange} id="IBAN" type="text"/>
                     </div>
                     <div className='soloRow'>
                     </div>
@@ -65,23 +65,23 @@ function RIBForm(){
 
                 <div className='duoRow defaultSpacing'>
                     <div className='soloRow'>
-                        <div className='labelErrorContainer'><label htmlFor="BIC">Bank Identification Code</label>{virtualForm.state.BIC.error && <span>Error Message</span>}</div>
-                        <input name="BIC" value={virtualForm.state.BIC.value || ''} onChange={handleChange} id="BIC" type="text"/>
+                        <div className='labelErrorContainer'><label htmlFor="BIC">Bank Identification Code</label>{virtualForm.state?.BIC?.error && <span>Error Message</span>}</div>
+                        <input name="BIC" value={virtualForm.state?.BIC?.value || ''} onChange={handleChange} id="BIC" type="text"/>
                     </div>                
                     <div className='soloRow'>
-                        <div className='labelErrorContainer'><label htmlFor="bank">Domiciliation</label>{virtualForm.state.bank.error && <span>Error Message</span>}</div>
-                        <input name="bank" value={virtualForm.state.bank.value || ''} onChange={handleChange} id="bank" type="text"/>
+                        <div className='labelErrorContainer'><label htmlFor="bank">Domiciliation</label>{virtualForm.state?.bank?.error && <span>Error Message</span>}</div>
+                        <input name="bank" value={virtualForm.state?.bank?.value || ''} onChange={handleChange} id="bank" type="text"/>
                     </div>
                 </div>
 
                 <div className='duoRow defaultSpacing'>
                     <div className='soloRow'>
-                        <div className='labelErrorContainer'><label htmlFor="owner">Nom du Titulaire</label>{virtualForm.state.owner.error && <span>Error Message</span>}</div>
-                        <input name="owner" value={virtualForm.state.owner.value || ''} onChange={handleChange} id="owner" type="text"/>
+                        <div className='labelErrorContainer'><label htmlFor="owner">Nom du Titulaire</label>{virtualForm.state?.owner?.error && <span>Error Message</span>}</div>
+                        <input name="owner" value={virtualForm.state?.owner?.value || ''} onChange={handleChange} id="owner" type="text"/>
                     </div>                
                     <div className='soloRow'>
-                        <div className='labelErrorContainer'><label htmlFor="scan">Scan Upload</label>{virtualForm.state.scan.error && <span>Error Message</span>}</div>
-                        <input name="scan" value={virtualForm.state.scan.value || ''} onChange={handleChange} id="scan" type="text"/>
+                        <div className='labelErrorContainer'><label htmlFor="scan">Scan Upload</label>{virtualForm.state?.scan?.error && <span>Error Message</span>}</div>
+                        <input name="scan" value={virtualForm.state?.scan?.value || ''} onChange={handleChange} id="scan" type="text"/>
                     </div>
                 </div>
 
