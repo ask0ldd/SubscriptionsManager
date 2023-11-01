@@ -73,6 +73,14 @@ export function useFormManager(fieldsNames : string[], nonMandatoryFields : stri
             return true
         },
 
+        setInitValues(fieldsnValues : {[key: string]: string}[]) {
+            // check if fieldname exists
+            fieldsnValues.forEach((fieldnValue) => {
+                const fieldnValueKey = Object.keys(fieldnValue)[0]
+                if(inputsStates[fieldnValueKey]) this.updateVirtualFormField(fieldnValueKey, fieldnValue[fieldnValueKey])
+            })
+        },
+
         fullFormValidation() : boolean{
             const errorsKeys = []
             Object.keys(inputsStates).forEach((key) => {
@@ -102,7 +110,7 @@ export function useFormManager(fieldsNames : string[], nonMandatoryFields : stri
         },
     }
 
-    return {inputsStates, setinputsStates, virtualForm}
+    return {virtualForm}
 
 }
 

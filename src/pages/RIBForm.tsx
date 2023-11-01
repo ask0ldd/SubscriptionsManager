@@ -25,6 +25,8 @@ function RIBForm(){
         // help with double useeffect triggering in dev mode
         virtualForm.resetValidators()
 
+        virtualForm.setInitValues([{'IBAN': '000000'},])
+
         virtualForm.setValidators([
             {fieldName : 'IBAN', validators : [Validators.isNumber]},
             {fieldName : 'BIC', validators : [Validators.isNumber]},
