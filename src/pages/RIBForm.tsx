@@ -22,10 +22,11 @@ function RIBForm(){
     const {virtualForm} = useFormManager(fieldnames, nonMandatoryFields)
 
     useEffect(() => {
-        // help with double useeffect triggering in dev mode
-        virtualForm.resetValidators()
 
         virtualForm.setInitValues([{'IBAN': '000000'},])
+
+        // help with double useeffect triggering in dev mode
+        virtualForm.resetValidators()
 
         virtualForm.setValidators([
             {fieldName : 'IBAN', validators : [Validators.isNumber]},
@@ -44,7 +45,7 @@ function RIBForm(){
     function handleSubmit(event: React.FormEvent<HTMLFormElement>){
         event.preventDefault()
         virtualForm.fullFormValidation()
-        // console.log('state : ', inputsStates)
+        console.log('state : ', virtualForm.state)
     }
     
     return(

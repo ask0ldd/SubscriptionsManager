@@ -35,20 +35,18 @@ export function useFormManager(fieldsNames : string[], nonMandatoryFields : stri
         },
 
         resetValidators(){
-            const inputsStatesCopy = {...inputsStates}
-            Object.keys(inputsStatesCopy).forEach((key) => {
-                inputsStatesCopy[key].validators = []
+            Object.keys(inputsStates).forEach((key) => {
+                setinputsStates(previousState => ({...previousState, [key] : {...previousState[key], validators : []}}))
             })
-            setinputsStates(inputsStatesCopy)
         },
 
         updateVirtualFormField(name : string, value : any){
-            setinputsStates((previousState : IInputs) => ({...previousState, [name] : {...previousState[name], 'value' : value, untouched : false }}))
+            this.setinputsStates((previousState : IInputs) => ({...previousState, [name] : {...previousState[name], 'value' : value, untouched : false }}))
             this.realtimeInputValidation(name, value)
         },
 
         setError(inputName : string, errorStatus : boolean){
-            setinputsStates(previousState => ({...previousState, [inputName] : {...previousState[inputName], error : errorStatus }}))
+            this.setinputsStates(previousState => ({...previousState, [inputName] : {...previousState[inputName], error : errorStatus }}))
         },
 
         realtimeInputValidation(name : string, value : any) : boolean{
@@ -73,12 +71,14 @@ export function useFormManager(fieldsNames : string[], nonMandatoryFields : stri
             return true
         },
 
-        setInitValues(fieldsnValues : {[key: string]: string}[]) {
+        setInitValues(fieldsnValues : {[key: string]: string}[]){
             // check if fieldname exists
             fieldsnValues.forEach((fieldnValue) => {
                 const fieldnValueKey = Object.keys(fieldnValue)[0]
                 if(inputsStates[fieldnValueKey]) this.updateVirtualFormField(fieldnValueKey, fieldnValue[fieldnValueKey])
             })
+            /*setTimeout(() => console.log(inputsStates), 1000)
+            console.log(inputsStates)*/
         },
 
         fullFormValidation() : boolean{
