@@ -27,13 +27,21 @@ export const mockRefund = {
     amount : '300', 
     paymentMethod : 'credit card', 
     authorizedBy : '22/05/1975', 
-    uploadedDoc : '300', 
+    uploadedDoc : 'scan.jpg', 
     notes : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sed eros mauris. Vivamus elit ante, pellentesque at purus ut, suscipit dapibus magna. Sed auctor sem rutrum, rhoncus libero eget, consequat diam. Aliquam ornare quam id porttitor elementum. Duis iaculis vulputate urna. Nullam non volutpat massa. Sed eu sodales mauris. Donec ultrices, dui sed posuere tincidunt, tortor ipsum hendrerit diam, nec ultrices enim nunc et mauris.', 
 }
 
-export const  mockAnomaly = {
+export const mockAnomaly = {
     title : 'Joe Schmo : Abonnement non payé',
     startingDate : '22/05/1975', 
     endDate : '22/05/1975',
     notes : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sed eros mauris. Vivamus elit ante, pellentesque at purus ut, suscipit dapibus magna. Sed auctor sem rutrum, rhoncus libero eget, consequat diam. Aliquam ornare quam id porttitor elementum. Duis iaculis vulputate urna. Nullam non volutpat massa. Sed eu sodales mauris. Donec ultrices, dui sed posuere tincidunt, tortor ipsum hendrerit diam, nec ultrices enim nunc et mauris.', 
+}
+
+export const mockRIB = {
+    IBAN : 'NL15INGB8818556967',
+    BIC : ' LOYDCHGGZCH',
+    bank : 'LLOYDS TSB BANK PLC ZURICH',
+    owner : 'Joe Schmo',
+    scan : 'scan.jpg',
 }
