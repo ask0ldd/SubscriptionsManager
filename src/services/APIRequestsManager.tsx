@@ -10,7 +10,14 @@ export class APIRequestsManager {
         })
     }
 
-    static newMember(member : IMember){
+    static newMember(member : IMember | object){
+        if(JSON.stringify(member) == '{}') return
+        console.log(member)
+    }
+
+    static updateMember(memberid : number, member : IMember | object)
+    {
+        if(JSON.stringify(member) == '{}') return
         console.log(member)
     }
 }

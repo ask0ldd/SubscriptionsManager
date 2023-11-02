@@ -76,8 +76,7 @@ function MemberForm(){
     function handleSubmit(event: React.FormEvent<HTMLFormElement>){
         event.preventDefault()
         const result = virtualForm.fullFormValidation()
-        //if(result) APIRequestsManager.newMember(virtualForm.getFormDatas())
-        console.log(virtualForm.getFormDatas())
+        if(result) APIRequestsManager.newMember(virtualForm.getFormDatas())
     }
 
     return (
