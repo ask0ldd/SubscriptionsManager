@@ -94,6 +94,7 @@ export function useFormManager(fieldsNames : string[], nonMandatoryFields : stri
                 // if the field is empty and mandatory => setError
                 if(inputsStates[key].mandatory && inputsStates[key].value == "") {
                     this.setError(key, true)
+                    errorsKeys.push(key)
                     return false
                 }
                 
