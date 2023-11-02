@@ -6,7 +6,7 @@ export class APIRequestsManager {
 
     static getMember(_memberId ?: number) : Promise<IMember>{
         return new Promise(resolve => {
-            setTimeout(() => {resolve(mockMember)}, 300)
+            setTimeout(() => {resolve(mockMember)}, 100)
         })
     }
 

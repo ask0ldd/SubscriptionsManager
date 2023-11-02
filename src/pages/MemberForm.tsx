@@ -35,17 +35,13 @@ function MemberForm(){
 
     const virtualForm = useFormManager(fieldnames, nonMandatoryFields)
 
-    // retrieve existing datas async from the mock api and fill the form
-    function getnSetFormDatas() {
+    useEffect(() => {
+
+        // retrieve existing datas async from the mock api and fill the form
         APIRequestsManager.getMember().then((mockMember) => {
             const formatedMember = Object.keys(mockMember).map((key) => ({[key] : mockMember[key as keyof IMember]}))
             virtualForm.setInitValues(formatedMember)
         })
-    }    
-
-    useEffect(() => {
-
-        getnSetFormDatas()
 
         // help with double useeffect triggering in dev mode
         virtualForm.resetValidators()

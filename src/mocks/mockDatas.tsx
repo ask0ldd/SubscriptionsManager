@@ -1,5 +1,5 @@
 export const mockMember = {
-    lastname : 'shmo', 
+    lastname : 'schmo', 
     firstname : 'joe', 
     birthdate : '22/05/1975', 
     gender : 'M', 
@@ -10,7 +10,15 @@ export const mockMember = {
     phone : '', 
     email : '', 
     mobile : '112233445566', 
-    emergencyContactLastname : 'shmo', 
+    emergencyContactLastname : 'schmo', 
     emergencyContactFirstname : 'janine', 
     emergencyContactMobile : '665544332211',
+}
+
+export const  mockSubscription = {
+    activity : 'golf',
+    fees : '300',
+    sponsor : 'joe schmo',
+    startingDate : '22/05/1975', 
+    endDate : '22/05/1975', 
 }
