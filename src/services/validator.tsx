@@ -26,7 +26,12 @@ export class Validators {
         const dateRegexDash = new RegExp("^[0-9]{4}-[0-9]{1,2}-[0-9]{1,2}$")
         const dateRegexSlash = new RegExp("^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4}$")
         //!! ispastdate should be adapted depeding on the date format dash / slash
-        const isPastDate = (Date.parse(trimmedValue) - Date.now()) < 0
+        let isPastDate = false
+        if(dateRegexDash.test(trimmedValue)) isPastDate = (Date.parse(trimmedValue) - Date.now()) < 0
+        if(dateRegexSlash.test(trimmedValue)) {
+            const formattedDate = trimmedValue.split('/').reverse().join('-')
+            isPastDate = (Date.parse(formattedDate) - Date.now()) < 0
+        }
         return (dateRegexDash.test(trimmedValue) || dateRegexSlash.test(trimmedValue)) && isPastDate
     }
 

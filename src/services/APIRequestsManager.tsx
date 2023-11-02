@@ -18,6 +18,6 @@ export class APIRequestsManager {
     static updateMember(memberid : number, member : IMember | object)
     {
         if(JSON.stringify(member) == '{}') return
-        console.log(member)
+        console.log(memberid, member)
     }
 }
