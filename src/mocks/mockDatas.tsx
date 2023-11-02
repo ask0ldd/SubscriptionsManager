@@ -30,3 +30,10 @@ export const mockRefund = {
     uploadedDoc : '300', 
     notes : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sed eros mauris. Vivamus elit ante, pellentesque at purus ut, suscipit dapibus magna. Sed auctor sem rutrum, rhoncus libero eget, consequat diam. Aliquam ornare quam id porttitor elementum. Duis iaculis vulputate urna. Nullam non volutpat massa. Sed eu sodales mauris. Donec ultrices, dui sed posuere tincidunt, tortor ipsum hendrerit diam, nec ultrices enim nunc et mauris.', 
 }
+
+export const  mockAnomaly = {
+    title : 'Joe Schmo : Abonnement non payé',
+    startingDate : '22/05/1975', 
+    endDate : '22/05/1975',
+    notes : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sed eros mauris. Vivamus elit ante, pellentesque at purus ut, suscipit dapibus magna. Sed auctor sem rutrum, rhoncus libero eget, consequat diam. Aliquam ornare quam id porttitor elementum. Duis iaculis vulputate urna. Nullam non volutpat massa. Sed eu sodales mauris. Donec ultrices, dui sed posuere tincidunt, tortor ipsum hendrerit diam, nec ultrices enim nunc et mauris.', 
+}
