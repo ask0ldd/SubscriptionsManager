@@ -1,15 +1,13 @@
 export class Validators {
 
     static isName(inputValue : string) : boolean{
-        const trimmedValue = inputValue.trim()
         const nameRegex =  new RegExp ("^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,}$")
-        return nameRegex.test(trimmedValue)
+        return nameRegex.test(inputValue.trim())
     }
 
     static isBetween_0_and_99(inputValue : string) : boolean{
-        const trimmedValue = inputValue.trim()
         const numberRegex = new RegExp ("^[0-9]{1,2}$")
-        return numberRegex.test(trimmedValue)
+        return numberRegex.test(inputValue.trim())
     }
 
     /*static isNumber(inputValue : string) : boolean{
@@ -53,13 +51,12 @@ export class Validators {
     }
 
     static isEmail(inputValue : string) : boolean{
-        const trimmedValue = inputValue.trim()
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-        return emailRegex.test(trimmedValue)
+        return emailRegex.test(inputValue.trim())
     }
 
     static isGender(inputValue : string) : boolean{
-        return ['M', 'F', 'NC'].includes(inputValue)
+        return ['M', 'F', 'NC'].includes(inputValue.trim())
     }
 
     static isEmpty(inputValue : string) : boolean{
